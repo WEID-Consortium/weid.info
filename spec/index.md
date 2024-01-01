@@ -11,8 +11,7 @@
 We are thinking about to use the domain name system for OID resolution.
 + **ORS** is a protocol to write an OID as a hostname and look its DNS up in DNS nameservers autoritativ for OID.
 + **DNS** is the resolution system we all know well already. After a lttle reading and testing OID-RAs with domains and nameservers and the ORS,
-+ I do not find the need to declare a *new* specification. I believe we can implement ORS by just the "normal" DNS and protocols we just have,
-+ BUT to ensure the conformance of applications we need registries.
-+ 
+  I do not find the need to declare a *new* specification. I believe we can implement ORS by just the "normal" DNS and protocols we just have,
+  BUT to ensure the conformance of applications we need registries.+ 
 + **Application Schema Registry** could specify how a systems can use ORS/DNS in a reasonable way.
-+ 
+ 
