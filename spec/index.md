@@ -3,8 +3,6 @@
 ## WEID notation
 + **WEID** is a specification to write OID identifiers in a different notation. Its status is stable and it is ready to use. [Read the spec](weid-notation/)
 
-## Related Topics:
-
 #### Objectmodel-, Registration Authority and Allocation look-up
 + **RDAP** is a protocol to look-up registration data for domains, IPs, networks or other objects like e.g. OID or WEID. We try to implement OID and WEID and other look-ups as part of RDAP. Its status is BETA, you can use it but it will be improved or changed. [Read more](rdap/)
 + **OID-IP** is a protocol developed by ViaThinkSoft. It can be used to query OID registries similar to DNS Nameservers. [Join the space](https://startforum.de/s/oid-ip/)
