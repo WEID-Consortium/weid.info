@@ -1,6 +1,6 @@
 # Protocols and specifications
 
-## WEID notation
+## WEID notation - Alternative identifiers
 + **WEID** is a specification to write OID identifiers in a different notation. Its status is stable and it is ready to use. [Read the spec](weid-notation/)
 
 #### Objectmodel-, Registration Authority and Allocation look-up
