@@ -1,7 +1,9 @@
 # WEID Consortium
 The WEID Consortium is a group of IT-workers and companies leaded by Frdlweb and ViaThinkSoft who work on network and internet protocols, specially identifiers, look-ups and registries.
 
+
 Responsible owner: Till Wehowski ([Frdlweb/Webfan Homepagesystem](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553))
+
 Technical management: Daniel Marschall ([ViaThinkSoft](https://hosted.oidplus.com/viathinksoft/?goto=oid%3A1.3.6.1.4.1.37476))
 
 Organisation Entity: [co@weid.info](https://weid.info/)
