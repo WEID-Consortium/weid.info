@@ -34,7 +34,7 @@ We further plan to develop, or we plan to work with:
 
 # OID-Connect
 Successor of a set of our protocols for registration, provisioning, accreditation, binding, managing, connecting and extending the registration, delegation, signing and validation of OID allocations, its registrants, registrars and registries.
-- [Protocol Registry](1.3.6.1.4.1.37553.8.1.8.1.33061)
+- [Protocol Registry](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.33061)
 - [WEID OID-Connect Service Provider](https://connect.oid.zone/)
 
 # WEID Software
