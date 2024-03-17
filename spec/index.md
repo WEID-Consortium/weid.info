@@ -1,7 +1,7 @@
 # Protocols and specifications
 
 ## WEID notation - Alternative identifiers
-+ **WEID** is a specification to write OID identifiers in a different notation. Its status is stable and it is ready to use. [Read the spec](/spec.html)
++ **WEID** is a specification to write OID identifiers in a different notation. Its status is stable and it is ready to use. [Read the spec](spec.html)
 
 #### Objectmodel-, Registration Authority and Allocation look-up
 + **RDAP** is a protocol to look-up registration data for domains, IPs, networks or other objects like e.g. OID or WEID. We try to implement OID and WEID and other look-ups as part of RDAP. Its status is BETA, you can use it but it will be improved or changed. [Read more](rdap/)
