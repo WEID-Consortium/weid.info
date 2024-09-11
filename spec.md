@@ -14,8 +14,7 @@ WEID (WEhowski IDentifier) is another notation for OIDs, developed by Till Wehow
 
 In the initial version of the WEID specification of 2011, only OIDs below the WEID root arc 1.3.6.1.4.1.37553.8 could be used. In a later definition by Daniel Marschall, any existing OID can be written in WEID notation, by defining sub-namespaces.
 
-The registry of sub-namespaces (URN prefixes) has currently the following entries:
-
+The registry of sub-namespaces has currently the following entries:
 
 * Namespace `weid:` (Also called "Class C" WEID)
   * Root OID is `1.3.6.1.4.1.37553.8`
@@ -110,6 +109,8 @@ Additional notes:
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 11, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.12 (weid:1-8-1-6-1-C-5).
+The current version of the specification is 12, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.12 (weid:1-8-1-6-1-C-5).
+
+The standard is also released as [ViaThinkSoft/Webfan Standard No. 3](https://www.viathinksoft.de/std/viathinksoft-std-0003-weid.html)
 
 © WEID is developed by [Daniel Marschall](https://www.daniel-marschall.de/) / [ViaThinkSoft](https://www.viathinksoft.com/) and [Melanie Wehowski](https://webfan.de/u/frdl-github-2658030).
