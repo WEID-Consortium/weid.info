@@ -4,7 +4,7 @@
 /**
 * WEID<=>OID Converter
 * (c) Webfan.de, ViaThinkSoft
-* Revision 2023-08-09
+* Revision 2024-09-10
 **/
 
 // What is a WEID?
@@ -15,7 +15,7 @@
 //
 // The full specification can be found here: https://weid.info/spec.html
 //
-// This converter supports WEID as of Spec Change #11
+// This converter supports WEID as of Spec Change #12
 //
 // A few short notes:
 //     - There are several classes of WEIDs which have different OID bases:
@@ -37,6 +37,7 @@
 //     - The namespace (weid:, weid:pen:, weid:root:) is case insensitive.
 //     - Padding with '0' characters is valid (e.g. weid:000EXAMPLE-3)
 //       The paddings do not count into the WeLuhn check digit.
+//     - URN Notation "urn:x-weid:..." is equal to "weid:..."
 //
 
 var WeidOidConverter = {
@@ -127,6 +128,9 @@ var WeidOidConverter = {
 		var rest = weid.substr(p+1);
 
 		var base = null;
+
+		namespace = namespace.replace(/^urn:x-weid:/, 'weid:');
+		
 		namespace = namespace.toLowerCase(); // namespace is case insensitive
 
 		if (namespace.startsWith("weid:")) {
