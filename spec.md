@@ -41,7 +41,7 @@ The registry of sub-namespaces (URN prefixes) has currently the following entrie
 
 To get an OID in accordance with Recommendation ITU-T X.600 assigned, you need to find a Registration Authority that assigns you an OID. You can obtain an OID as WEID and manage your own arc, e.g. by:
 
-  * [Free OID by Viathinksoft](https://oidplus.viathinksoft.com/oidplus/?goto=oidplus%3Acom.viathinksoft.freeoid)
+  * [Free OID by Viathinksoft](https://hosted.oidplus.com/viathinksoft/?goto=oidplus%3Acom.viathinksoft.freeoid)
   * ["Public" OID by Frdlweb](https://registry.frdl.de/?goto=oidplus%3Acom.viathinksoft.freeoid)
 
 
@@ -100,12 +100,16 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
     * `weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)).
     * If you know more namespaces, or if you are the author of a custom namespace, please let us know.
 
+Changes with [Spec Change 12: URN Namespace](https://github.com/ViaThinkSoft/standards/issues/1):
+
+* Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordiance with RFC3406, the URN namespace of WEID is "urn:x-weid:" (whereas "x-" stands for an unregistered experimental URN). Hence, "weid:2-RR-2" can be written as "urn:x-weid:2-RR-2".
+
 Additional notes:
 
 * Any WEID (except for Custom WEID as defined in Spec Change 11) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to IETF RFC-4122).
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 11, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.11 (weid:1-8-1-6-1-B-7).
+The current version of the specification is 11, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.12 (weid:1-8-1-6-1-B-8).
 
-© WEID is developed by [Daniel Marschall](https://www.daniel-marschall.de/) / [ViaThinkSoft](https://www.viathinksoft.com/) and [Till Wehowski](https://webfan.de/u/frdl-github-2658030).
+© WEID is developed by [Daniel Marschall](https://www.daniel-marschall.de/) / [ViaThinkSoft](https://www.viathinksoft.com/) and [Melanie Wehowski](https://webfan.de/u/frdl-github-2658030).
