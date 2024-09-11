@@ -3,7 +3,7 @@
 /**
  * WEID<=>OID Converter
  * (c) Webfan.de, ViaThinkSoft
- * Revision 2023-08-11
+ * Revision 2024-09-10
  **/
 
 // What is a WEID?
@@ -14,7 +14,7 @@
 //
 // The full specification can be found here: https://weid.info/spec.html
 //
-// This converter supports WEID as of Spec Change #11
+// This converter supports WEID as of Spec Change #12
 //
 // A few short notes:
 //     - There are several classes of WEIDs which have different OID bases:
@@ -36,6 +36,7 @@
 //     - The namespace (weid:, weid:pen:, weid:root:) is case insensitive.
 //     - Padding with '0' characters is valid (e.g. weid:000EXAMPLE-3)
 //       The paddings do not count into the WeLuhn check digit.
+//     - URN Notation "urn:x-weid:..." is equal to "weid:..."
 //
 
 namespace Frdl\Weid;
@@ -129,6 +130,8 @@ class WeidOidConverter {
 		$p = strrpos($weid,':');
 		$namespace = substr($weid, 0, $p+1);
 		$rest = substr($weid, $p+1);
+
+		$weid = preg_replace('@^urn:x-weid:@', 'weid:', $weid);
 
 		$namespace = strtolower($namespace); // namespace is case insensitive
 
@@ -240,6 +243,22 @@ class WeidOidConverter {
 		}
 
 		return $namespace . ($weidstr == '' ? $checksum : $weidstr . '-' . $checksum);
+	}
+
+	/**
+	 * @param string $base10
+	 * @return string
+	 */
+	public static function encodeSingleArc(string $base10): string {
+		return self::base_convert_bigint($base10, 10, 36);
+	}
+
+	/**
+	 * @param string $base36
+	 * @return string
+	 */
+	public static function decodeSingleArc(string $base36): string {
+		return self::base_convert_bigint($base36, 36, 10);
 	}
 
 	/**
