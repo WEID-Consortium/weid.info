@@ -2,7 +2,7 @@
 
 ### Service
 You can obtain an OID as WEID and manage your own arc, e.g. by:
-* Free OID by [ViaThinkSoft](https://oidplus.viathinksoft.com/oidplus/?goto=oidplus%3Acom.viathinksoft.freeoid)
+* Free OID by [ViaThinkSoft](https://hosted.oidplus.com/viathinksoft/?goto=oidplus%3Acom.viathinksoft.freeoid)
 * Private [WEID](https://registry.frdl.de/?goto=com.frdlweb.freeweid) by Frdlweb
 * Public [OID](https://registry.frdl.de/?goto=oidplus%3Acom.viathinksoft.freeoid) by Frdlweb
 
@@ -10,10 +10,10 @@ You can obtain an OID as WEID and manage your own arc, e.g. by:
 <a name="code"></a>
 
 ### Code
-* JavaScript (supports Spec Change 12): [WeidOidConverter.js](https://github.com/frdl/weid/blob/gh-pages/WeidOidConverter.js)
-* PHP (supports Spec Change 12): [WeidOidConverter.php](https://github.com/frdl/weid/blob/gh-pages/WeidOidConverter.php)
-* Delphi (supports Spec Change 11): [WEID_Delphi.pas](https://github.com/danielmarschall/oidplus_dos/blob/master/WEID_Delphi.pas)
-* Turbo Pascal (supports Spec Change 11): [WEID.pas](https://github.com/danielmarschall/oidplus_dos/blob/master/WEID.PAS) and [VTSFUNCS.pas (Dependency)](https://github.com/danielmarschall/oidplus_dos/blob/master/VTSFUNCS.PAS)
+* JavaScript (supports Spec Change 12): [WeidOidConverter.js](https://github.com/WEID-Consortium/weid.info/blob/gh-pages/WeidOidConverter.js)
+* PHP (supports Spec Change 12): [WeidOidConverter.php](https://github.com/WEID-Consortium/weid.info/blob/gh-pages/WeidOidConverter.php)
+* Delphi (supports Spec Change 11): [WEID_Delphi.pas](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/WEID_Delphi.pas)
+* Turbo Pascal (supports Spec Change 11): [WEID.pas](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/WEID.PAS) and [VTSFUNCS.pas (Dependency)](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/VTSFUNCS.PAS)
 
 
 <a name="software"></a>
