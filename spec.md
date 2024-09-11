@@ -110,6 +110,6 @@ Additional notes:
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 11, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.12 (weid:1-8-1-6-1-B-8).
+The current version of the specification is 11, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.12 (weid:1-8-1-6-1-C-5).
 
 © WEID is developed by [Daniel Marschall](https://www.daniel-marschall.de/) / [ViaThinkSoft](https://www.viathinksoft.com/) and [Melanie Wehowski](https://webfan.de/u/frdl-github-2658030).
