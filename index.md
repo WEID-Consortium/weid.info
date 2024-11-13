@@ -32,17 +32,19 @@ We further plan to develop, or we plan to work with:
 + A well defined set of **registration policies** to register and hand-out subordinates and/or identifiers like **IPs, domains, services related and connected to OID registries**.
 + Defining a bootstrap of trusted **default roots and OID trees** where you can **register** well-known OIDs like IANA PEN, FreeOID by Viathinksoft and registered and connected sub-registries like e.g. OIDplus instances.
 
-# OID-Connect
+# OID-Connect + OID Hosting
 Successor of a set of our protocols for registration, provisioning, accreditation, binding, managing, connecting and extending the registration, delegation, signing and validation of OID allocations, its registrants, registrars and registries.
-- [Protocol Registry](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.33061)
-- [WEID OID-Connect Service Provider](https://connect.oid.zone/)
+- [OID Hosting](https://oid.zone/)
+- [OID-Connect Protocol Registry](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.33061)
+- [OID RDAP Bootstrap Registry](https://www.oid.zone/?goto=oidplus%3Asystem)
 
 # WEID Software
-Working on software implementing the WEID protocols, like e.g. OIDplus.
+Working on software implementing the WEID protocols, like e.g. [OIDplus](https://oidplus.com/).
 Successors of the WEID Software Chapter will be (soon):
 - Source code registries and development packages collections
 - Applications registries and app setup/installer marketplaces
-- Code less interoperational protocols and interfaces registry, significantly referred to as **OIDminus**  
+- Code less interoperational protocols and interfaces registry, significantly referred to as **OIDminus**
+- [OIDplus Extensions "WEIDplus"](https://weid.info/plus/)  
 
 # WEID RA and WEID Business
 Wehowski and Marschall will enable and administer the commercial market to sub-delegate and resell roots, trees and subzones and connect internet services like webhosting or emails to it and to other services following our protocols. They may provide a biz/shop to (re-)sell webhosting, domains, services, servers and other products.
