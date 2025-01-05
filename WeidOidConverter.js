@@ -237,7 +237,7 @@ var WeidOidConverter = {
 
 		var is_class_c      = (weidstr.startsWith('1-3-6-1-4-1-SZ5-8-') || (weidstr == '1-3-6-1-4-1-SZ5-8'));
 		var is_class_b_pen  = (weidstr.startsWith('1-3-6-1-4-1-') || (weidstr == '1-3-6-1-4-1')) && !is_class_c;
-		var is_class_b_uuid = (weidstr.startsWith('2-P-') || (weidstr == '2-P'));
+		var is_class_b_uuid = weidstr.startsWith('2-P-'); // do NOT check for == '2-P', as this must be class A
 		var is_class_a      = !is_class_b_pen && !is_class_b_uuid && !is_class_c;
 
 		var checksum = WeidOidConverter.weLuhnCheckDigit(weidstr);
@@ -252,12 +252,8 @@ var WeidOidConverter = {
 		} else if (is_class_b_uuid) {
 			// Spec Change 13: UUID WEID
 			var uuid_base36 = weidstr.split('-')[2];
-			if (typeof uuid_base36 == "undefined") {
-				namespace = "weid:root:";
-			} else {
-				weidstr = weidstr.substr('2-P-'.length + uuid_base36.length + '-'.length);
-				namespace = 'weid:uuid:' + WeidOidConverter.formatAsUUID(WeidOidConverter.base_convert_bigint(uuid_base36, 36, 16)) + ':';
-			}
+			weidstr = weidstr.substr('2-P-'.length + uuid_base36.length + '-'.length);
+			namespace = 'weid:uuid:' + WeidOidConverter.formatAsUUID(WeidOidConverter.base_convert_bigint(uuid_base36, 36, 16)) + ':';
 		} else if (is_class_a) {
 			// weidstr stays
 			namespace = 'weid:root:';
