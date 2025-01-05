@@ -1,6 +1,6 @@
 # WEID Specification
 
-An Object Identifier (OID) is an extensively used identification mechanism jointly developed by ITU-T and ISO/IEC for naming any type of object, concept, or "thing" with a globally unambiguous name. (More information about OIDs can be found at [www.oid-info.com](https://www.oid-info.com))
+An Object Identifier (OID) is an extensively used identification mechanism jointly developed by ITU-T and ISO/IEC for naming any type of object, concept, or "thing" with a globally unambiguous name. (More information about OIDs can be found at [www.oid-base.com](https://www.oid-base.com))
 
 There are three well-known notations for OIDs:
 
@@ -22,16 +22,29 @@ The registry of sub-namespaces has currently the following entries:
   * The registration of WEID Alphanumeric OIDs beneath this arc is managed by Webfan.de in order of FRDLWEB. You can assign as Private WEID by Frdlweb here: https://registry.frdl.de/?goto=com.frdlweb.freeweid
 
 
-* Sub-Namespace `weid:pen:` (Also called "Class B" WEID)
+* Sub-Namespace `weid:pen:` (Also called "Class B / PEN" WEID)
   * Root OID is `1.3.6.1.4.1`
   * Example: OID `1.3.6.1.4.1.37476.9999` can be written as `weid:pen:SX0-7PR-6` (`6` is the check digit)
   * The registration of Private Enterprise Numbers (PEN) is managed by IANA. You can register a PEN here: 
     [https://pen.iana.org/pen/PenApplication.page](https://pen.iana.org/pen/PenApplication.page)
 
 
+* Sub-Namespace `weid:uuid:<uuid-base16>:` (Also called "Class B / UUID" WEID)
+  * Root OID is `2.25.<uuid-base10>`
+  * The UUID WEID are an alternative notation of `weid:root:2-P-<uuid-base36>:...`
+  * Example: OID `2.25.2098739235139107623796528785225371043.37476` can be written as `weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-3` (`3` is the check digit)
+  * UUIDs can be created with a lot of tools, for example: [https://misc.daniel-marschall.de/tools/uuid_mac_decoder/](https://misc.daniel-marschall.de/tools/uuid_mac_decoder/)
+
+
 * Sub-Namespace `weid:root:` (Also called "Class A" WEID)
   * Root OID is the OID tree root
   * Example: OID `2.999` can be written as `weid:root:2-RR-2` (`2` is the check digit)
+
+
+* Sub-Namespace `weid:<domain.tld>:` (Also called "Domain / Class D" WEID)
+  * Domain names can be used as part of the namespace
+  * `weid:<sub>.<domain>.<tld>:...` is an alternative notation of `weid:DNS-<TLD>-<DOMAIN>-<SUB>-...`
+  * Example: WEID `weid:example.com:HELLO-WORLD-?` is equal to `weid:DNS-COM-EXAMPLE-HELLO-WORLD-?`
 
 
 * More sub-namespaces can be added to this registry in the future. The sub-namespaces must be defined by the [WEID consortium](https://www.startforum.de/s/weid/) (ViaThinkSoft and WebFan) in a [Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1).
@@ -102,6 +115,11 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
 Changes with [Spec Change 12: URN Namespace](https://github.com/ViaThinkSoft/standards/issues/1):
 
 * Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordiance with RFC3406, the URN namespace of WEID is "urn:x-weid:" (whereas "x-" stands for an unregistered experimental URN). Hence, "weid:2-RR-2" can be written as "urn:x-weid:2-RR-2".
+
+Changes with [Spec Change 13: UUID WEID](https://github.com/WEID-Consortium/weid.info/issues/1):
+
+* Spec Change 13 (1 January 2025) defines the WEID namespaces which contain an UUID. The Sub-Namespaces `weid:uuid:<uuid-base16>:...` (Also called "Class B / UUID" WEID) is equal to `weid:root:2-P-<uuid-base36>:...` which is equal to the root OID `2.25.<uuid-base10>....`
+
 
 Additional notes:
 
