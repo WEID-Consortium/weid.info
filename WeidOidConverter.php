@@ -141,6 +141,7 @@ class WeidOidConverter {
 
 		if (str_starts_with($namespace, 'weid:uuid:')) {
 			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
+			if (count(explode(':',$weid)) != 4) return false;
 			$uuid = explode(':', $weid)[2];
 			$uuidrest = explode('-', explode(':', $weid)[3]);
 			$alt_weid = 'weid:root:2-P-'.self::base_convert_bigint(str_replace('-','',$uuid), 16, 36) . "-" . implode('-',$uuidrest);
