@@ -3,7 +3,7 @@
 /**
  * WEID<=>OID Converter
  * (c) Webfan.de, ViaThinkSoft
- * Revision 2025-01-04
+ * Revision 2025-01-05
  **/
 
 // What is a WEID?
@@ -239,7 +239,7 @@ class WeidOidConverter {
 
 		$is_class_c = (strpos($weidstr, '1-3-6-1-4-1-SZ5-8-') === 0) || ($weidstr === '1-3-6-1-4-1-SZ5-8');
 		$is_class_b_pen = ((strpos($weidstr, '1-3-6-1-4-1-') === 0) || ($weidstr === '1-3-6-1-4-1')) && !$is_class_c;
-		$is_class_b_uuid = ((strpos($weidstr, '2-P-') === 0) || ($weidstr === '2-P'));
+		$is_class_b_uuid = (strpos($weidstr, '2-P-') === 0); // do NOT check for == '2-P', as this must be class A
 		$is_class_a = !$is_class_b_pen && !$is_class_b_uuid && !$is_class_c;
 
 		$checksum = self::weLuhnGetCheckDigit($weidstr);
