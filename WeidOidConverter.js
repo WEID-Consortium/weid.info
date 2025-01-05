@@ -126,23 +126,27 @@ var WeidOidConverter = {
 	weid2oid: function(weid) {
 		var weid = weid.trim();
 
+		weid = weid.replace(/^urn:x-weid:/, 'weid:'); // Spec Change 12 (URN)
+
 		var p = weid.lastIndexOf(':');
 		var namespace = weid.substr(0, p+1);
 		var rest = weid.substr(p+1);
 
 		var base = null;
 
-		namespace = namespace.replace(/^urn:x-weid:/, 'weid:');
-
 		namespace = namespace.toLowerCase(); // namespace is case insensitive
 
 		if (namespace.startsWith("weid:uuid:")) {
-			// Spec Change 13: Class B UUID WEID
+			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
 			var uuid = weid.split(":")[2];
 			var uuidrest = weid.split(":")[3].split("-");
 			var alt_weid = 'weid:root:2-P-'+WeidOidConverter.base_convert_bigint(uuid.replaceAll('-',''), 16, 36) + "-" + uuidrest.join("-");
-			console.log("Debug: " + alt_weid);
-			return WeidOidConverter.weid2oid(alt_weid);
+			var tmp = WeidOidConverter.weid2oid(alt_weid);
+
+			if (!tmp) return false;
+			var checksum = tmp["weid"].split("-").reverse()[0];
+			var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
+			return { "weid": weid, "oid" : tmp["oid"] };
 		}
 
 		if (namespace.startsWith("weid:")) {
@@ -152,7 +156,12 @@ var WeidOidConverter = {
 				if (weid.split(":").length != 3) return false;
 				var domainrest = weid.split(":")[2].split("-");
 				var alt_weid = "weid:9-DNS-" + domainpart.reverse().join("-").toUpperCase() + "-" + domainrest.join("-");
-				return WeidOidConverter.weid2oid(alt_weid);
+				var tmp = WeidOidConverter.weid2oid(alt_weid);
+
+				if (!tmp) return false;
+				var checksum = tmp["weid"].split("-").reverse()[0];
+				var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
+				return { "weid": weid, "oid" : tmp["oid"] };
 			}
 		}
 
