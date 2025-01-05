@@ -171,7 +171,7 @@ class WeidOidConverter {
 			// Class C
 			$base = '1-3-6-1-4-1-SZ5-8';
 		} else if ($namespace == 'weid:pen:') {
-			// Class B
+			// Class B (PEN)
 			$base = '1-3-6-1-4-1';
 		} else if ($namespace == 'weid:root:') {
 			// Class A
