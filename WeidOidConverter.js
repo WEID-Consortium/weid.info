@@ -138,6 +138,7 @@ var WeidOidConverter = {
 
 		if (namespace.startsWith("weid:uuid:")) {
 			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
+			if (weid.split(":").length != 4) return false;
 			var uuid = weid.split(":")[2];
 			var uuidrest = weid.split(":")[3].split("-");
 			var alt_weid = 'weid:root:2-P-'+WeidOidConverter.base_convert_bigint(uuid.replaceAll('-',''), 16, 36) + "-" + uuidrest.join("-");
