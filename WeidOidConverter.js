@@ -4,7 +4,7 @@
 /**
 * WEID<=>OID Converter
 * (c) Webfan.de, ViaThinkSoft
-* Revision 2025-01-04
+* Revision 2025-01-05
 **/
 
 // What is a WEID?
@@ -252,8 +252,12 @@ var WeidOidConverter = {
 		} else if (is_class_b_uuid) {
 			// Spec Change 13: UUID WEID
 			var uuid_base36 = weidstr.split('-')[2];
-			weidstr = weidstr.substr('2-P-'.length + uuid_base36.length + '-'.length);
-			namespace = 'weid:uuid:' + WeidOidConverter.formatAsUUID(WeidOidConverter.base_convert_bigint(uuid_base36, 36, 16)) + ':';
+			if (typeof uuid_base36 == "undefined") {
+				namespace = "weid:root:";
+			} else {
+				weidstr = weidstr.substr('2-P-'.length + uuid_base36.length + '-'.length);
+				namespace = 'weid:uuid:' + WeidOidConverter.formatAsUUID(WeidOidConverter.base_convert_bigint(uuid_base36, 36, 16)) + ':';
+			}
 		} else if (is_class_a) {
 			// weidstr stays
 			namespace = 'weid:root:';
