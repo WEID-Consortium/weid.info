@@ -3,7 +3,7 @@
 /**
  * WEID<=>OID Converter
  * (c) Webfan.de, ViaThinkSoft
- * Revision 2025-01-05
+ * Revision 2025-01-06
  **/
 
 // What is a WEID?
@@ -14,7 +14,7 @@
 //
 // The full specification can be found here: https://co.weid.info/spec.html
 //
-// This converter supports WEID as of Spec Change #13
+// This converter supports WEID as of Spec Change #14
 //
 // A few short notes:
 //     - There are several classes of WEIDs which have different OID bases:
@@ -42,7 +42,7 @@
 //     - URN Notation "urn:x-weid:..." is equal to "weid:..."
 //
 
-namespace Frdl\Weid;
+namespace ViaThinkSoft\OIDplus\Plugins\ObjectTypes\OID;
 
 class WeidOidConverter {
 
@@ -139,7 +139,15 @@ class WeidOidConverter {
 
 		$namespace = strtolower($namespace); // namespace is case insensitive
 
-		if (str_starts_with($namespace, 'weid:uuid:')) {
+		if ($namespace == 'weid:uuid:') {
+			// Spec Change 14: Special case: OID 2.25 is weid:uuid:?
+			if (($rest == '?') || ($rest == '3')) {
+				$weid = 'weid:uuid:3';
+				return '2.25';
+			} else {
+				return false;
+			}
+		} else if (str_starts_with($namespace, 'weid:uuid:')) {
 			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
 			if (count(explode(':',$weid)) != 4) return false;
 			$uuid = explode(':', $weid)[2];
@@ -150,7 +158,7 @@ class WeidOidConverter {
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
 			return $oid;
 		}
-		
+
 		if (str_starts_with($namespace, 'weid:')) {
 			$domainpart = explode('.', explode(':',$weid)[1]);
 			if (count($domainpart) > 1) {
@@ -240,7 +248,7 @@ class WeidOidConverter {
 
 		$is_class_c = (strpos($weidstr, '1-3-6-1-4-1-SZ5-8-') === 0) || ($weidstr === '1-3-6-1-4-1-SZ5-8');
 		$is_class_b_pen = ((strpos($weidstr, '1-3-6-1-4-1-') === 0) || ($weidstr === '1-3-6-1-4-1')) && !$is_class_c;
-		$is_class_b_uuid = (strpos($weidstr, '2-P-') === 0); // do NOT check for == '2-P', as this must be class A
+		$is_class_b_uuid = ((strpos($weidstr, '2-P-') === 0) || ($weidstr === '2-P'));
 		$is_class_a = !$is_class_b_pen && !$is_class_b_uuid && !$is_class_c;
 
 		$checksum = self::weLuhnGetCheckDigit($weidstr);
@@ -252,10 +260,16 @@ class WeidOidConverter {
 			$weidstr = substr($weidstr, strlen('1-3-6-1-4-1-'));
 			$namespace = 'weid:pen:';
 		} else if ($is_class_b_uuid) {
-			// Spec Change 13: UUID WEID
-			$uuid_base36 = explode('-', $weidstr)[2];
-			$weidstr = substr($weidstr, strlen('2-P-') + strlen($uuid_base36) + strlen('-'));
-			$namespace = 'weid:uuid:' . self::formatAsUUID(self::base_convert_bigint($uuid_base36, 36, 16)) . ':';
+			if ($weidstr == '2-P') {
+				// Spec Change 14: Special case: OID 2.25 is weid:uuid:?
+				$weidstr = '';
+				$namespace = 'weid:uuid:';
+			} else {
+				// Spec Change 13: UUID WEID
+				$uuid_base36 = explode('-', $weidstr)[2];
+				$weidstr = substr($weidstr, strlen('2-P-') + strlen($uuid_base36) + strlen('-'));
+				$namespace = 'weid:uuid:' . self::formatAsUUID(self::base_convert_bigint($uuid_base36, 36, 16)) . ':';
+			}
 		} else if ($is_class_a) {
 			// $weidstr stays
 			$namespace = 'weid:root:';
@@ -356,83 +370,83 @@ class WeidOidConverter {
 echo "Class B UUID tests\n\n";
 $weid = 'weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-?';
 echo $weid."\n";
-echo \Frdl\Weid\WeidOidConverter::weid2oid($weid)."\n";
+echo WeidOidConverter::weid2oid($weid)."\n";
 echo $weid."\n";
-echo \Frdl\Weid\WeidOidConverter::oid2weid('2.25.2098739235139107623796528785225371043.37476')."\n";
+echo WeidOidConverter::oid2weid('2.25.2098739235139107623796528785225371043.37476')."\n";
 echo "\n";
 
 echo "Class D tests\n\n";
 $weid = 'weid:welt.example.com:ABC-EXAMPLE-?';
 echo $weid."\n";
-echo \Frdl\Weid\WeidOidConverter::weid2oid($weid)."\n";
+echo WeidOidConverter::weid2oid($weid)."\n";
 echo $weid."\n";
 echo "\n";
 
 echo "Class C tests:\n\n";
 
 var_dump($oid = '1.3.6.1.4.1.37553.8')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 var_dump($oid = '1.3.6.1.4.1.37553.8.32488192274')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:EXAMPLE-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 $weid = 'weid:00000example-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 echo "Class B tests:\n\n";
 
 var_dump($oid = '1.3.6.1.4.1')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:pen:?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 var_dump($oid = '1.3.6.1.4.1.37553.7.99.99.99')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:pen:SZ5-7-2R-2R-2R-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 $weid = 'weid:pen:000SZ5-7-02R-00002R-002r-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 var_dump($oid = '1.3.6.1.4.1.37476.9999')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:pen:SX0-7PR-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 echo "Class A tests:\n\n";
 
 var_dump($oid = '')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:root:?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 var_dump($oid = '.2.999')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:root:2-RR-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 
 var_dump($oid = '2.999')."\n";
-var_dump(\Frdl\Weid\WeidOidConverter::oid2weid($oid))."\n";
+var_dump(WeidOidConverter::oid2weid($oid))."\n";
 $weid = 'weid:root:2-RR-?';
-var_dump(\Frdl\Weid\WeidOidConverter::weid2oid($weid))."\n";
+var_dump(WeidOidConverter::weid2oid($weid))."\n";
 var_dump($weid)."\n";
 echo "\n";
 */
