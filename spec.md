@@ -120,6 +120,10 @@ Changes with [Spec Change 13: UUID WEID](https://github.com/WEID-Consortium/weid
 
 * Spec Change 13 (1 January 2025) defines the WEID namespaces which contain an UUID. The Sub-Namespaces `weid:uuid:<uuid-base16>:...` (Also called "Class B / UUID" WEID) is equal to `weid:root:2-P-<uuid-base36>:...` which is equal to the root OID `2.25.<uuid-base10>....`
 
+Changes with [Spec Change 14: UUID WEID](https://github.com/WEID-Consortium/weid.info/issues/2):
+
+* Spec Change 14 (6 January 2025) defines the special case `weid:uuid:?` to be an alias of `weid:root:2-P-3` which is OID `2.25`.
+
 
 Additional notes:
 
@@ -127,7 +131,7 @@ Additional notes:
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 13, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.13 (weid:1-8-1-6-1-D-3).
+The current version of the specification is 14, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.14 (weid:1-8-1-6-1-E-1).
 
 The standard is also released as [ViaThinkSoft/Webfan Standard No. 3](https://www.viathinksoft.de/std/viathinksoft-std-0003-weid.html)
 
