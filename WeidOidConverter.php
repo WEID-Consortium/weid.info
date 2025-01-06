@@ -154,7 +154,7 @@ class WeidOidConverter {
 			$uuid = explode(':', $weid)[2];
 			$uuidrest = explode(':', $weid)[3];
 			if (!preg_match('@^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$@', $uuid, $m)) return false;
-			$alt_weid = 'weid:root:2-P-'.self::base_convert_bigint(str_replace('-','',$uuid), 16, 36) . "-" . $uuidrest;
+			$alt_weid = 'weid:root:2-P-'.self::base_convert_bigint(str_replace('-','',$uuid), 16, 36).'-'.$uuidrest;
 			$oid = self::weid2oid($alt_weid);
 			if ($oid === false) return false;
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
@@ -166,8 +166,8 @@ class WeidOidConverter {
 			if (count($domainpart) > 1) {
 				// Spec Change 10: Class D / Domain-WEID ( https://github.com/frdl/weid/issues/3 )
 				if (count(explode(':',$weid)) != 3) return false;
-				$domainrest = explode('-',explode(':',$weid)[2]);
-				$alt_weid = "weid:9-DNS-" . strtoupper(implode('-',array_reverse($domainpart))) . "-" . implode('-',$domainrest);
+				$domainrest = explode(':',$weid)[2];
+				$alt_weid = "weid:9-DNS-" . strtoupper(implode('-',array_reverse($domainpart))) . "-" . $domainrest;
 				$oid = self::weid2oid($alt_weid);
 				if ($oid === false) return false;
 				$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
@@ -188,8 +188,8 @@ class WeidOidConverter {
 			// Spec Change 15: "weid:pen:<pen-base10>:?" as alias of "weid:pen:<pen-base36>-?"
 			if (count(explode(':',$weid)) != 4) return false;
 			$pen = explode(':', $weid)[2];
-			$penrest = explode('-', explode(':', $weid)[3]);
-			$alt_weid = 'weid:root:1-3-6-1-4-1-'.self::base_convert_bigint($pen, 10, 36) . "-" . implode('-',$penrest);
+			$penrest = explode(':', $weid)[3];
+			$alt_weid = 'weid:root:1-3-6-1-4-1-'.self::base_convert_bigint($pen, 10, 36) . "-" . $penrest;
 			$oid = self::weid2oid($alt_weid);
 			if ($oid === false) return false;
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
