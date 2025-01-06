@@ -140,7 +140,7 @@ var WeidOidConverter = {
 			// Spec Change 15: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/3 )
 			if (weid.split(":").length != 3) return false;
 			var uuidrest = weid.split(":")[2].split("-");
-			var alt_weid = 'weid:root:2-P-'+uuidrest.join("-");
+			var alt_weid = 'weid:root:2-P-' + uuidrest.join("-");
 			var tmp = WeidOidConverter.weid2oid(alt_weid);
 
 			if (!tmp) return false;
@@ -152,7 +152,8 @@ var WeidOidConverter = {
 			if (weid.split(":").length != 4) return false;
 			var uuid = weid.split(":")[2];
 			var uuidrest = weid.split(":")[3].split("-");
-			var alt_weid = 'weid:root:2-P-'+WeidOidConverter.base_convert_bigint(uuid.replaceAll('-',''), 16, 36) + "-" + uuidrest.join("-");
+			if (!uuid.match("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")) return false;
+			var alt_weid = 'weid:root:2-P-' + WeidOidConverter.base_convert_bigint(uuid.replaceAll('-',''), 16, 36) + "-" + uuidrest.join("-");
 			var tmp = WeidOidConverter.weid2oid(alt_weid);
 
 			if (!tmp) return false;
@@ -191,7 +192,7 @@ var WeidOidConverter = {
 			if (weid.split(":").length != 4) return false;
 			var pen = weid.split(":")[2];
 			var penrest = weid.split(":")[3].split("-");
-			var alt_weid = 'weid:root:1-3-6-1-4-1-'+WeidOidConverter.base_convert_bigint(uuid.replaceAll('-',''), 10, 36) + "-" + penrest.join("-");
+			var alt_weid = 'weid:root:1-3-6-1-4-1-' + WeidOidConverter.base_convert_bigint(pen, 10, 36) + "-" + penrest.join("-");
 			var tmp = WeidOidConverter.weid2oid(alt_weid);
 
 			if (!tmp) return false;
