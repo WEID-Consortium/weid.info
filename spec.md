@@ -127,7 +127,7 @@ Additional notes:
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 12, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.13 (weid:1-8-1-6-1-D-3).
+The current version of the specification is 13, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.13 (weid:1-8-1-6-1-D-3).
 
 The standard is also released as [ViaThinkSoft/Webfan Standard No. 3](https://www.viathinksoft.de/std/viathinksoft-std-0003-weid.html)
 
