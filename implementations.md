@@ -10,7 +10,7 @@ You can obtain an OID as WEID and manage your own arc, e.g. by:
 <a name="code"></a>
 
 ### Code
-* JavaScript (supports Spec Change 14): [WeidOidConverter.js](https://github.com/WEID-Consortium/weid.info/blob/gh-pages/WeidOidConverter.js)
+* JavaScript (supports Spec Change 15): [WeidOidConverter.js](https://github.com/WEID-Consortium/weid.info/blob/gh-pages/WeidOidConverter.js)
 * PHP (supports Spec Change 14): [WeidOidConverter.php](https://github.com/WEID-Consortium/weid.info/blob/gh-pages/WeidOidConverter.php)
 * Delphi (supports Spec Change 14): [WEID_Delphi.pas](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/WEID_Delphi.pas)
 * Turbo Pascal (supports Spec Change 14): [WEID.pas](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/WEID.PAS) and [VTSFUNCS.pas (Dependency)](https://github.com/danielmarschall/oidplus_nostalgia/tree/master/DOS/VTSFUNCS.PAS)
