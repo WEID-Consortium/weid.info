@@ -21,31 +21,33 @@ The registry of sub-namespaces has currently the following entries:
   * Example: OID `1.3.6.1.4.1.37553.8.32488192274` can be written as `weid:EXAMPLE-3` (`3` is the check digit)
   * The registration of WEID Alphanumeric OIDs beneath this arc is managed by Webfan.de in order of FRDLWEB. You can assign as Private WEID by Frdlweb here: https://registry.frdl.de/?goto=com.frdlweb.freeweid
 
-
 * Sub-Namespace `weid:pen:` (Also called "Class B / PEN" WEID)
   * Root OID is `1.3.6.1.4.1`
   * Example: OID `1.3.6.1.4.1.37476.9999` can be written as `weid:pen:SX0-7PR-6` (`6` is the check digit)
   * The registration of Private Enterprise Numbers (PEN) is managed by IANA. You can register a PEN here: 
     [https://pen.iana.org/pen/PenApplication.page](https://pen.iana.org/pen/PenApplication.page)
 
+* Sub-Namespace `weid:pen:(pen-base10):` (Alternative Notation for PEN WEID)
+  * `weid:pen:(pen-base10):xxx-?` is an alias to `weid:pen:(pen-base36)-xxx-?`
+  * Example: `weid:pen:37476:7PR-?` is equal to `weid:pen:SX0-7PR-?`
 
-* Sub-Namespace `weid:uuid:<uuid-base16>:` (Also called "Class B / UUID" WEID)
-  * Root OID is `2.25.<uuid-base10>`
-  * The UUID WEID are an alternative notation of `weid:root:2-P-<uuid-base36>:...`
-  * Example: OID `2.25.2098739235139107623796528785225371043.37476` can be written as `weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-3` (`3` is the check digit)
+* Sub-Namespace `weid:uuid:` (Also called "Class B / UUID" WEID)
+  * Root OID is `2.25`
+  * Example: OID `2.25.2098739235139107623796528785225371043.37476` can be written as `weid:uuid:3D576PEXUZ1EVVF3MKRKOTYB-SX0-?`
   * UUIDs can be created with a lot of tools, for example: [https://misc.daniel-marschall.de/tools/uuid_mac_decoder/](https://misc.daniel-marschall.de/tools/uuid_mac_decoder/)
-
+  
+* Sub-Namespace `weid:uuid:(uuid-base16):` (Alternative Notation for UUID WEID)
+  * `weid:uuid:(uuid-base16):xxx-?` is an alias to `weid:uuid:(uuid-base36)-xxx-?`
+  * Example: OID `2.25.2098739235139107623796528785225371043.37476` can be written as `weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-?`
 
 * Sub-Namespace `weid:root:` (Also called "Class A" WEID)
   * Root OID is the OID tree root
   * Example: OID `2.999` can be written as `weid:root:2-RR-2` (`2` is the check digit)
 
-
 * Sub-Namespace `weid:<domain.tld>:` (Also called "Domain / Class D" WEID)
   * Domain names can be used as part of the namespace
   * `weid:<sub>.<domain>.<tld>:...` is an alternative notation of `weid:DNS-<TLD>-<DOMAIN>-<SUB>-...`
   * Example: WEID `weid:example.com:HELLO-WORLD-?` is equal to `weid:DNS-COM-EXAMPLE-HELLO-WORLD-?`
-
 
 * More sub-namespaces can be added to this registry in the future. The sub-namespaces must be defined by the [WEID consortium](https://www.startforum.de/s/weid/) (ViaThinkSoft and WebFan) in a [Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1).
 
@@ -120,9 +122,14 @@ Changes with [Spec Change 13: UUID WEID](https://github.com/WEID-Consortium/weid
 
 * Spec Change 13 (1 January 2025) defines the WEID namespaces which contain an UUID. The Sub-Namespaces `weid:uuid:<uuid-base16>:...` (Also called "Class B / UUID" WEID) is equal to `weid:root:2-P-<uuid-base36>:...` which is equal to the root OID `2.25.<uuid-base10>....`
 
-Changes with [Spec Change 14: UUID WEID](https://github.com/WEID-Consortium/weid.info/issues/2):
+Changes with [Spec Change 14: UUID WEID Update](https://github.com/WEID-Consortium/weid.info/issues/2):
 
 * Spec Change 14 (6 January 2025) defines the special case `weid:uuid:?` to be an alias of `weid:root:2-P-3` which is OID `2.25`.
+
+Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Consortium/weid.info/issues/3):
+
+* Spec Change 15 (6 January 2025) defines `weid:uuid:(uuid-base36)-xxx-?` to be an alias to `weid:uuid:(uuid-base16):xxx-?` (which itself is an alias to `weid:root:2-P-(uuid-base36)-xxx-?`) which represents OID `2.25.(uuid-base10).xxx`.
+* It also defines `weid:pen:(pen-base10):xxx-?` to be an alias to `weid:pen:(pen-base36)-xxx-?`.
 
 
 Additional notes:
@@ -131,7 +138,7 @@ Additional notes:
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
-The current version of the specification is 14, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.14 (weid:1-8-1-6-1-E-1).
+The current version of the specification is 15, which is identified with the OID 1.3.6.1.4.1.37553.8.1.8.1.6.1.15 (weid:1-8-1-6-1-F-8).
 
 The standard is also released as [ViaThinkSoft/Webfan Standard No. 3](https://www.viathinksoft.de/std/viathinksoft-std-0003-weid.html)
 
