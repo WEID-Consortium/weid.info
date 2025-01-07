@@ -134,7 +134,7 @@ Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Cons
 
 Additional notes:
 
-* Any WEID (except for Custom WEID as defined in Spec Change 11) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to IETF RFC-4122).
+* Any WEID (except for Custom WEID as defined in Spec Change 11) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to IETF RFC 9562).
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
