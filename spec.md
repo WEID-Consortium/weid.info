@@ -1,6 +1,6 @@
 # WEID Specification
 
-An Object Identifier (OID) is an extensively used identification mechanism jointly developed by ITU-T and ISO/IEC for naming any type of object, concept, or "thing" with a globally unambiguous name. (More information about OIDs can be found at [www.oid-base.com](https://www.oid-base.com))
+An Object Identifier (OID) is an extensively used identification mechanism jointly developed by ITU-T and ISO/IEC for naming any type of object, concept, or "thing" with a globally unambiguous name. More information about OIDs can be found at [www.oid-base.com](https://www.oid-base.com).
 
 There are three well-known notations for OIDs:
 
@@ -117,7 +117,7 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
 
 Changes with [Spec Change 12: URN Namespace](https://github.com/ViaThinkSoft/standards/issues/1):
 
-* Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordiance with RFC3406, the URN namespace of WEID is "urn:x-weid:" (whereas "x-" stands for an unregistered experimental URN). Hence, "weid:2-RR-2" can be written as "urn:x-weid:2-RR-2".
+* Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordiance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), the URN namespace of WEID is `urn:x-weid:` (whereas `x-` stands for an unregistered experimental URN). Hence, `weid:2-RR-2` can be written as `urn:x-weid:2-RR-2`.
 
 Changes with [Spec Change 13: UUID WEID](https://github.com/WEID-Consortium/weid.info/issues/1):
 
@@ -135,7 +135,7 @@ Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Cons
 
 Additional notes:
 
-* Any WEID (except for Custom WEID as defined in Spec Change 11) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to IETF RFC 9562).
+* Any WEID (except for Custom WEID as defined in Spec Change 11) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to [IETF RFC 9562](https://www.rfc-editor.org/rfc/rfc9562)).
 * Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers)
 * At www.weid.info you can find more information and announcements of changes.
 
