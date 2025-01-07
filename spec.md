@@ -82,7 +82,7 @@ The construction of a WEID is demonstrated with the example OID 2.999:
 
 Recommendations for WEID notation (as of Spec Change 8):
 
-* Besides the classic `weid:` namespace that represents OID `1.3.6.1.4.1.37553.8`, new namespaces `weid:root:` which represent the root OID and `weid:pen:` which represent OID `1.3.6.1.4.1` were created.
+* Besides the classic `weid:` namespace (that represents OID `1.3.6.1.4.1.37553.8`), new namespaces `weid:root:` (which represents the root OID) and `weid:pen:` (which represents OID `1.3.6.1.4.1`) are introduced.
 * When choosing a (sub-)namespace, it is recommended to choose a sub-namespace that is closest to the OID you want to describe, producing the shortest WEID therefore. For example, `weid:pen:SX0-7PR-6` should be chosen rather than `weid:root:1-3-6-1-4-1-SX0-7PR-6`
 * The arcs in a WEID should be written in upper-case, but lowercase can be interpreted, too.
 * The URN namespace (`weid:`, `weid:pen:`, `weid:root:`) is case insensitive, but it is recommended to write it in lowercase.
