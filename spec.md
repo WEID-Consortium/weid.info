@@ -129,7 +129,7 @@ Changes with [Spec Change 14: UUID WEID Update](https://github.com/WEID-Consorti
 Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Consortium/weid.info/issues/3):
 
 * Spec Change 15 (6 January 2025) defines `weid:uuid:(uuid-base16):xxx-?` to be an alias of `weid:uuid:(uuid-base36)-xxx-?` (which itself is an alias of `weid:root:2-P-(uuid-base36)-xxx-?`) which represents OID `2.25.(uuid-base10).xxx`.
-* It also defines `weid:pen:(pen-base10):xxx-?` to be an alias of `weid:pen:(pen-base36)-xxx-?`.
+* It also defines `weid:pen:(pen-base10):xxx-?` to be an alias of `weid:pen:(pen-base36)-xxx-?` (which itself is an alias of `weid:root:1-3-6-1-4-1-(pen-base36)-xxx-?`) which represents OID `1.3.6.1.4.1.(pen-base10).xxx`.
 
 
 Additional notes:
