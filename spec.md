@@ -28,7 +28,7 @@ The registry of sub-namespaces has currently the following entries:
     [https://pen.iana.org/pen/PenApplication.page](https://pen.iana.org/pen/PenApplication.page)
 
 * Sub-Namespace `weid:pen:(pen-base10):` (Alternative Notation for PEN WEID)
-  * `weid:pen:(pen-base10):xxx-?` is an alias to `weid:pen:(pen-base36)-xxx-?`
+  * `weid:pen:(pen-base10):xxx-?` is an alias of `weid:pen:(pen-base36)-xxx-?`
   * Example: `weid:pen:37476:7PR-?` is equal to `weid:pen:SX0-7PR-?`
 
 * Sub-Namespace `weid:uuid:` (Also called "Class B / UUID" WEID)
@@ -37,7 +37,7 @@ The registry of sub-namespaces has currently the following entries:
   * UUIDs can be created with a lot of tools, for example: [https://misc.daniel-marschall.de/tools/uuid_mac_decoder/](https://misc.daniel-marschall.de/tools/uuid_mac_decoder/)
   
 * Sub-Namespace `weid:uuid:(uuid-base16):` (Alternative Notation for UUID WEID)
-  * `weid:uuid:(uuid-base16):xxx-?` is an alias to `weid:uuid:(uuid-base36)-xxx-?`
+  * `weid:uuid:(uuid-base16):xxx-?` is an alias of `weid:uuid:(uuid-base36)-xxx-?`
   * Example: OID `2.25.2098739235139107623796528785225371043.37476` can be written as `weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-?`
 
 * Sub-Namespace `weid:root:` (Also called "Class A" WEID)
@@ -128,8 +128,8 @@ Changes with [Spec Change 14: UUID WEID Update](https://github.com/WEID-Consorti
 
 Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Consortium/weid.info/issues/3):
 
-* Spec Change 15 (6 January 2025) defines `weid:uuid:(uuid-base36)-xxx-?` to be an alias to `weid:uuid:(uuid-base16):xxx-?` (which itself is an alias to `weid:root:2-P-(uuid-base36)-xxx-?`) which represents OID `2.25.(uuid-base10).xxx`.
-* It also defines `weid:pen:(pen-base10):xxx-?` to be an alias to `weid:pen:(pen-base36)-xxx-?`.
+* Spec Change 15 (6 January 2025) defines `weid:uuid:(uuid-base16):xxx-?` to be an alias of `weid:uuid:(uuid-base36)-xxx-?` (which itself is an alias of `weid:root:2-P-(uuid-base36)-xxx-?`) which represents OID `2.25.(uuid-base10).xxx`.
+* It also defines `weid:pen:(pen-base10):xxx-?` to be an alias of `weid:pen:(pen-base36)-xxx-?`.
 
 
 Additional notes:
