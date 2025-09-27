@@ -8,7 +8,7 @@ There are three well-known notations for OIDs:
 - ASN.1 notation: `{joint-iso-itu-t(2) example(999)}`
 - OID-IRI notation: `/Joint-ISO-ITU-T/Example`
 
-WEID (WEhowski IDentifier) is another notation for OIDs, developed by Till Wehowski and Daniel Marschall:
+WEID (WEhowski IDentifier) is another notation for OIDs, developed by Melanie Wehowski and Daniel Marschall:
 
 - WEID notation: `weid:root:2-RR-2`
 
