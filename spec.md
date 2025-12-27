@@ -46,8 +46,8 @@ The registry of sub-namespaces has currently the following entries:
 
 * Sub-Namespace `weid:<domain.tld>:` (Also called "Domain / Class D" WEID)
   * Domain names can be used as part of the namespace
-  * `weid:<sub>.<domain>.<tld>:...` is an alternative notation of `weid:DNS-<TLD>-<DOMAIN>-<SUB>-...`
-  * Example: WEID `weid:example.com:HELLO-WORLD-?` is equal to `weid:DNS-COM-EXAMPLE-HELLO-WORLD-?`
+  * `weid:<sub>.<domain>.<tld>:...` is an alternative notation of `weid:9-DNS-<TLD>-<DOMAIN>-<SUB>-...`
+  * Example: WEID `weid:example.com:HELLO-WORLD-?` is equal to `weid:9-DNS-COM-EXAMPLE-HELLO-WORLD-?`
 
 * More sub-namespaces can be added to this registry in the future. The sub-namespaces must be defined by the [WEID consortium](https://www.startforum.de/s/weid/) (ViaThinkSoft and WebFan) in a [Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1).
 
