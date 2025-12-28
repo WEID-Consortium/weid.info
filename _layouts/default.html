@@ -33,7 +33,7 @@
 			document.getElementById('oid2a').innerHTML = '&nbsp;';
 		} else {
 			document.getElementById('weid2a').innerHTML = '<b>WEID: </b>'+tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2a').innerHTML = '<b>OID: </b>'+tmp.oid;
+			document.getElementById('oid2a').innerHTML = '<b>OID: </b>'+tmp.oid.replace(/^urn:oid:/, '');
 		}
 	}
 	function weidInputChanged() {
@@ -43,7 +43,7 @@
 			document.getElementById('oid2b').innerHTML = '&nbsp;';
 		} else {
 			document.getElementById('weid2b').innerHTML = '<b>WEID: </b>'+tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2b').innerHTML = '<b>OID: </b>'+tmp.oid;
+			document.getElementById('oid2b').innerHTML = '<b>OID: </b>'+tmp.oid.replace(/^urn:oid:/, '');
 		}
 	}
 </script>
