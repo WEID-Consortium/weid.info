@@ -1,3 +1,27 @@
+<script src="WeidOidConverter.js"></script>
+<script>
+	function oidInputChanged() {
+		var tmp = WeidOidConverter.oid2weid('urn:oid:' + document.getElementById('oid').value);
+		if ((tmp === false) || (tmp.weid === false) || (tmp.oid === false)) {
+			document.getElementById('weid2a').innerHTML = '<font color="red">Invalid input</font>';
+			document.getElementById('oid2a').innerHTML = '&nbsp;';
+		} else {
+			document.getElementById('weid2a').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
+			document.getElementById('oid2a').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
+		}
+	}
+	function weidInputChanged() {
+		var tmp = WeidOidConverter.weid2oid('urn:x-weid:' + document.getElementById('weid').value);
+		if ((tmp === false) || (tmp.weid === false) || (tmp.oid === false)) {
+			document.getElementById('weid2b').innerHTML = '<font color="red">Invalid input</font>';
+			document.getElementById('oid2b').innerHTML = '&nbsp;';
+		} else {
+			document.getElementById('weid2b').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
+			document.getElementById('oid2b').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
+		}
+	}
+</script>
+
 <a name="service"></a>
 
 ### Service
