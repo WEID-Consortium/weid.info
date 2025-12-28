@@ -188,71 +188,71 @@ None.
 8\. RA Considerations
 =====================
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6**
-ASN1: `{ iso(1) identified-organization(3) dod(6) internet(1) private(4) enterprise(1) frdlweb(37553) weid(8) org(1) webfan(8) technical-specifications(1) weid-spec(6) }`
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6**<br>
+ASN1: `{ iso(1) identified-organization(3) dod(6) internet(1) private(4) enterprise(1) frdlweb(37553) weid(8) org(1) webfan(8) technical-specifications(1) weid-spec(6) }`<br>
 IRI: `/.../weid/Organization/Webfan/1/6`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1**<br>
 ASN1: `{ ... weid-spec-changes(1) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.1**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.1**<br>
 ASN1: `{ ... weid-spec-change-2013-6-27-1-identifier(1) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.2**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.2**<br>
 ASN1: `{ ... weid-spec-change-2013-6-27-2-weix-canceled-and-replaced(2) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.3**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.3**<br>
 ASN1: `{ ... weid-spec-change-2013-6-27-3-rooting-url-look-up-url-meaning-revision(3) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.4**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.4**<br>
 ASN1: `{ ... weid-spec-change-2013-0-1-commercial-repository(4) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.5**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.5**<br>
 ASN1: `{ ... weid-spec-change-2013-6-27-4-determine-seperator-colon(5) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.6**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.6**<br>
 ASN1: `{ ... weid-spec-change-2013-10-2-camel-case-identifier(6) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.7**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.7**<br>
 ASN1: `{ ... weid-spec-change-2013-10-2-thesaurus(7) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.8**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.8**<br>
 ASN1: `{ ... weid-spec-change-2021-12-8-marschall-indi-version(8) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.9**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.9**<br>
 ASN1: `{ ... weid-spec-change-2022-03-08-marschall-checksum-wildcard(9) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.10**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.10**<br>
 ASN1: `{ ... weid-spec-change-2023-08-07-domain-weid(10) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.11**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.11**<br>
 ASN1: `{ ... weid-spec-change-2023-08-07-custom-namespace(11) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.12**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.12**<br>
 ASN1: `{ ... weid-spec-change-2024-09-09-urn(12) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.13**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.13**<br>
 ASN1: `{ ... weid-spec-change-2025-01-01-uuid(13) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.14**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.14**<br>
 ASN1: `{ ... weid-spec-change-2025-01-06-uuid-update1(14) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.15**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.15**<br>
 ASN1: `{ ... weid-spec-change-2025-01-06-uuid-update2(15) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.16**
+**OID: 1.3.6.1.4.1.37553.8.1.8.1.6.1.16**<br>
 ASN1: `{ ... weid-spec-change-2026-01-01-revamp(16) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.4**
+**OID: 1.3.6.1.4.1.37553.8.1.8.4**<br>
 ASN1: `{ ... dns(4) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.24**
+**OID: 1.3.6.1.4.1.37553.8.1.8.24**<br>
 ASN1: `{ ... oid(24) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.25**
+**OID: 1.3.6.1.4.1.37553.8.1.8.25**<br>
 ASN1: `{ ... pen-oid(25) }`
 
-**OID: 1.3.6.1.4.1.37553.8.1.8.30**
+**OID: 1.3.6.1.4.1.37553.8.1.8.30**<br>
 ASN1: `{ ... uuid-oid(30) }`
 
 9\. References
@@ -280,12 +280,12 @@ This document was written in Nroff Internet Draft Editor by 3xA Security. [https
 11\. Authors' Addresses
 =======================
 
-Daniel Marschall
-Postfach 11 53
-69243 Bammental
+Daniel Marschall<br>
+Postfach 11 53<br>
+69243 Bammental<br>
 Germany
 
-Email: [daniel-marschall@viathinksoft.de](mailto:daniel-marschall@viathinksoft.de)
+Email: [daniel-marschall@viathinksoft.de](mailto:daniel-marschall@viathinksoft.de)<br>
 URI: [https://www.viathinksoft.com/](https://www.viathinksoft.com/)
 
 Appendix A: Specification Change Changelog
