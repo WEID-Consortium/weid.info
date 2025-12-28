@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script src="https://registry.frdl.de/assets-cdn/iso/identified-organization/6/1/4/1/frdlweb/weid/8/7/cdn/WeidOidConverter.js"></script> -->
-    <script src="WeidOidConverter.js"></script>
-    <!-- <link rel="icon" href="https://registry.frdl.de/assets-cdn/iso/identified-organization/6/1/4/1/frdlweb/weid/8/7/cdn/weid_icon.png"> -->
     <link rel="icon" href="weid_icon.png">
 
     <link href="@co@weid.info" rel="me">
@@ -25,28 +22,7 @@
         font-family: sans-serif;
     }
 </style>
-<script>
-	function oidInputChanged() {
-		var tmp = WeidOidConverter.oid2weid('urn:oid:' + document.getElementById('oid').value);
-		if ((tmp === false) || (tmp.weid === false) || (tmp.oid === false)) {
-			document.getElementById('weid2a').innerHTML = '<font color="red">Invalid input</font>';
-			document.getElementById('oid2a').innerHTML = '&nbsp;';
-		} else {
-			document.getElementById('weid2a').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2a').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
-		}
-	}
-	function weidInputChanged() {
-		var tmp = WeidOidConverter.weid2oid('urn:x-weid:' + document.getElementById('weid').value);
-		if ((tmp === false) || (tmp.weid === false) || (tmp.oid === false)) {
-			document.getElementById('weid2b').innerHTML = '<font color="red">Invalid input</font>';
-			document.getElementById('oid2b').innerHTML = '&nbsp;';
-		} else {
-			document.getElementById('weid2b').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2b').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
-		}
-	}
-</script>
+
 <body>
 
 <div class="container" style="margin-top:64px">
