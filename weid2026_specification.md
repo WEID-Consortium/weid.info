@@ -154,14 +154,29 @@ The [online converter](https://weid.info/implementations.html) can be used to ca
 
 The following notations are deprecated, but are still valid for backwards compatibility:
 
-*   **(5.1) `weid:`** is a deprecated notation of `urn:x-weid:`
-*   **(5.2) `urn:x-weid:pen:<pen-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `1.3.6.1.4.1.<base10>.<base10>`, for example `urn:x-weid:pen:SX0-7PR-?` is equal to OID `1.3.6.1.4.1.37476.9999`.
-*   **(5.3) `urn:x-weid:pen:<pen-as-base10>:<base36>-?`** is a deprecated alternative notation of OID `1.3.6.1.4.1.<base10>.<base10>`, for example `urn:x-weid:pen:37476:7PR-?` is equal to OID `1.3.6.1.4.1.37476.9999`.
-*   **(5.4) `urn:x-weid:uuid:<uuid-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:3D576PEXUZ1EVVF3MKRKOTYB-7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
-*   **(5.5) `urn:x-weid:uuid:<uuid-as-split-base16>:<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
-*   **(5.6) `urn:x-weid:root:?`** is a deprecated alternative notation of the OID root. For example, `urn:x-weid:root:2-RR-?` is equal to OID `2.999`.
-*   **(5.7) `urn:x-weid:<domain.tld>:?`** is a deprecated alternative notation of `urn:x-weid:9-DNS-<tld>-<domain>-?`. (Note that the current definition for DNS-based WEID uses the root `urn:x-weid:D-?` instead of `urn:x-weid:9-DNS-?`.) In this NSS prefix, TLD-Only domains ARE NOT allowed for the purpose of forming a Domain-WEID, since it may collide with other NSS prefixes.
-*   **(5.8) `urn:x-weid:x-weid:x-...:`**, i.e., NSS prefixes starting with `x-` and not containing a dot (`.`), is a deprecated feature called "vendor-specific WEID", creating WEID that are fully proprietary with custom rules, and they may or may not have a representation as OID. The only use was `urn:x-weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)). Instead of using a fully proprietary WEID, please use a regular WEID and add a namespace-internal NSS qualifier to that WEID.
+### (5.1) `weid:`
+**`weid:`** is a deprecated notation of `urn:x-weid:`.
+
+### (5.2) `urn:x-weid:pen:<pen-as-base36>-<base36>-?`
+**`urn:x-weid:pen:<pen-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `1.3.6.1.4.1.<base10>.<base10>`, for example `urn:x-weid:pen:SX0-7PR-?` is equal to OID `1.3.6.1.4.1.37476.9999`.
+
+### (5.3) `urn:x-weid:pen:<pen-as-base10>:<base36>-?`
+**`urn:x-weid:pen:<pen-as-base10>:<base36>-?`** is a deprecated alternative notation of OID `1.3.6.1.4.1.<base10>.<base10>`, for example `urn:x-weid:pen:37476:7PR-?` is equal to OID `1.3.6.1.4.1.37476.9999`.
+
+### (5.4) `urn:x-weid:uuid:<uuid-as-base36>-<base36>-?`
+**`urn:x-weid:uuid:<uuid-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:3D576PEXUZ1EVVF3MKRKOTYB-7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
+
+### (5.5) `urn:x-weid:uuid:<uuid-as-split-base16>:<base36>-?`
+**`urn:x-weid:uuid:<uuid-as-split-base16>:<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
+
+### (5.6) `urn:x-weid:root:?`
+**`urn:x-weid:root:?`** is a deprecated alternative notation of the OID root. For example, `urn:x-weid:root:2-RR-?` is equal to OID `2.999`.
+
+### (5.7) `urn:x-weid:<domain.tld>:?`
+**`urn:x-weid:<domain.tld>:?`** is a deprecated alternative notation of `urn:x-weid:9-DNS-<tld>-<domain>-?`. (Note that the current definition for DNS-based WEID uses the root `urn:x-weid:D-?` instead of `urn:x-weid:9-DNS-?`.) In this NSS prefix, TLD-Only domains ARE NOT allowed for the purpose of forming a Domain-WEID, since it may collide with other NSS prefixes.
+
+### (5.8) `urn:x-weid:x-weid:x-...:...`
+**`urn:x-weid:x-weid:x-...:...`**, i.e., NSS prefixes starting with `x-` and not containing a dot (`.`), is a deprecated feature called "vendor-specific WEID", creating WEID that are fully proprietary with custom rules, and they may or may not have a representation as OID. The only use was `urn:x-weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)). Instead of using a fully proprietary WEID, please use a regular WEID and add a namespace-internal NSS qualifier to that WEID.
 
 6\. Additional notes
 ====================
