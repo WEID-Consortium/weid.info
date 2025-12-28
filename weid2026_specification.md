@@ -64,7 +64,7 @@ Terminology
 6.  Proprietary Sub-Namespaces on an application level are allowed. For example, `urn:x-weid:ABC-DEF-?:xyz123:456:/789` defines a payload `xyz123:456:/789` that is meaningful for a custom application that knows how to handle `urn:x-weid:ABC-DEF-?`.
 7.  Every WEID (excluding the information in proprietary sub-namespaces) can be converted to an OID and vice versa using mappings (see chapter 3)
 8.  The arcs in a WEID should be written in upper-case, but lowercase can be interpreted, too.
-9.  Padding with `0` characters is valid (e.g. `urn:x-weid:000EXAMPLE-?`), but not recommended. The paddings do not count toward the WeLuhn check digit.
+9.  Padding with `0` characters is valid (e.g. `urn:x-weid:000EXAMPLE-?`), but not recommended. The paddings do not count towards the WeLuhn check digit.
 
 2\. Acquiring a WEID
 ====================
@@ -326,7 +326,7 @@ Changes with [Spec Change 10: Domain-WEID](https://github.com/frdl/weid/issues/3
 ---------------------------------------------------------------------------------
 
 *   Spec Change 10 (07 August 2023) allows domain names to be used as WEID sub-namespace.
-*   All WEID sub-namespaces containing at least one dot (.) are treated as domain names.
+*   All WEID sub-namespaces containing at least one dot (`.`) are treated as domain names.
 *   The notation `weid:example.com:ABC-DEF-?` is equal to `weid:9-DNS-COM-EXAMPLE-ABC-DEF-?`.
 *   The resulting WEID is called Domain-WEID or "Class D" WEID.
 *   Note that the check digit is equal for both notations since it is based on the resulting OID.
@@ -339,9 +339,9 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
 *   Spec Change 11 (07 August 2023) allows custom / vendor-specific WEID sub-namespaces.
 *   Such namespaces must begin with `x-`, for example: `weid:x-contoso:ABC-DEF-?` could be a WEID defined by Contoso Ltd.
 *   As usual for WEID, the namespace is case insensitive.
-*   To avoid confusion with Spec Change 10 Domain-WEID, the sub-namespace must not contain a dot (.).
+*   To avoid confusion with Spec Change 10 Domain-WEID, the sub-namespace must not contain a dot (`.`).
 *   The vendor has complete control over the namespace and can define the behavior. However, it is recommended to make use of Base36 and the weLuhn check digit.
-*   Since the vendor specifies the namespace, it is up to the vendor if they allow the mapping of their WEID-Namespace to the OID-Tree. In comparison to class A/B/C/D WEID which are 100% OID compatible, custom WEID might not be OID-compatible at all.
+*   Since the vendor specifies the namespace, it is up to the vendor if they allow the mapping of their WEID-Namespace to the OID-Tree. In comparison to Class A/B/C/D WEID which are 100% OID compatible, custom WEID might not be OID-compatible at all.
 *   Currently, the following custom namespaces are known:
     *   `weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)).
     *   If you know more namespaces, or if you are the author of a custom namespace, please let us know.
