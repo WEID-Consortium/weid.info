@@ -124,11 +124,11 @@ Any other WEID (such as `urn:x-weid:EXAMPLE`) needs a registration/request at re
 *   The Base36 arcs of a WEID are converted to Base10 and are then added to the OID tree below the arc `1.3.6.1.4.1.37553.8`. The check-digit (last arc of the WEID) is NOT used for the mapping to the OID tree.
     For example, `urn:x-weid:EXAMPLE-ABC-3` is mapped to `1.3.6.1.4.1.37553.8.32488192274.13368`.
 *   During the registration of a WEID, an alternative OID root (also called redirection) may be defined. Currently, the following redirections are defined:
-    *   `urn:x-weid:O-?` is usually mapped to `1.3.6.1.4.1.37553.8.24`, however, there will be a redirection to the OID tree root.
+    *   `urn:x-weid:O-?` is usually mapped to `1.3.6.1.4.1.37553.8.24`, however, there will be a redirection to the root of the OID tree.
     *   `urn:x-weid:P-?` is usually mapped to `1.3.6.1.4.1.37553.8.25`, however, there will be a redirection to OID `1.3.6.1.4.1`.
-    *   `urn:x-weid:U-9-?` is usually mapped to `1.3.6.1.4.1.37553.8.30`, however, there will be a redirection to OID `2.25`.
+    *   `urn:x-weid:U-?` is usually mapped to `1.3.6.1.4.1.37553.8.30`, however, there will be a redirection to OID `2.25`.
     *   Other WEID arcs (such as `urn:x-weid:D-?`) do not have an OID redirection. They will be mapped to the OID tree through `1.3.6.1.4.1.37553.8`.
-    *   Future alternative mapping may be announced via a [WEID Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1) by the WEID Consortium.
+    *   Future alternative mappings may be announced via a [WEID Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1) by the WEID Consortium.
 *   The WeLuhn check-digit (see chapter 4) is based on the default OID, NOT on the redirection target OID. Hence, the checksum can be calculated/verified without knowing the OID mapping.
 *   In case namespace-internal NSS qualifiers (such as `:foobar` in `urn:x-weid:P-SX0-?:foobar`) are used, the information of the qualifier is not mapped to the OID tree.
 *   Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary-length arcs (i.e., implementing BigInteger rather than 32-bit integers).
@@ -213,6 +213,11 @@ Use `urn:x-weid:D-<tld>-<domain>-?` instead (note that the check digit will be d
 The only use was `urn:x-weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)).
 
 Instead of using a vendor-specific WEID, please use a regular WEID and add a namespace-internal NSS qualifier to that WEID.
+
+### (5.9) `urn:x-weid:<tbd>:?`
+
+Although the list above is complete, it should be stated explicitly that any NSS prefixes are deprecated.
+
 
 6\. Additional notes
 ====================
