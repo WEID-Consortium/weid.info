@@ -79,6 +79,8 @@ var WeidOidConverter = {
 	oidSanitize: function(oid) {
 		var oid = oid.trim();
 
+		oid = oid.replace(/^urn:oid:/, '');
+
 		if (oid.substr(0,1) == '.') oid = oid.substr(1); // remove leading dot
 
 		if (oid != '') {
