@@ -32,8 +32,8 @@
 			document.getElementById('weid2a').innerHTML = '<font color="red">Invalid input</font>';
 			document.getElementById('oid2a').innerHTML = '&nbsp;';
 		} else {
-			document.getElementById('weid2a').innerHTML = '<b>urn:x-weid:</b>'+tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2a').innerHTML = '<b>urn:oid:</b>'+tmp.oid.replace(/^urn:oid:/, '');
+			document.getElementById('weid2a').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
+			document.getElementById('oid2a').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
 		}
 	}
 	function weidInputChanged() {
@@ -42,8 +42,8 @@
 			document.getElementById('weid2b').innerHTML = '<font color="red">Invalid input</font>';
 			document.getElementById('oid2b').innerHTML = '&nbsp;';
 		} else {
-			document.getElementById('weid2b').innerHTML = '<b>urn:x-weid:</b>'+tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
-			document.getElementById('oid2b').innerHTML = '<b>urn:oid:</b>'+tmp.oid.replace(/^urn:oid:/, '');
+			document.getElementById('weid2b').innerHTML = 'urn:x-weid:' + tmp.weid.replace(/^weid:/, '').replace(/^urn:x-weid:/, '');
+			document.getElementById('oid2b').innerHTML = 'urn:oid:' + tmp.oid.replace(/^urn:oid:/, '');
 		}
 	}
 </script>
