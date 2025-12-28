@@ -114,7 +114,7 @@ TLD-Only domains ARE allowed for the purpose of forming a Domain-WEID.
 
 ### (2.5) Other WEID
 
-Any other WEID (such as `urn:x-weid:EXAMPLE`) needs a registration/request at registry.frl.de. During that registration/request, an entry in the WEID root (together with an OID and, if required, an OID redirection) will be added.
+Any other WEID (such as `urn:x-weid:EXAMPLE-?`) needs a registration/request at registry.frl.de. During that registration/request, an entry in the WEID root (together with an OID and, if required, an OID redirection) will be added.
 
 3\. Mapping a WEID to the OID tree
 ==================================
@@ -122,7 +122,7 @@ Any other WEID (such as `urn:x-weid:EXAMPLE`) needs a registration/request at re
 *   Each WEID (except the deprecated vendor-speceific WEID) can be represented by an OID and vice versa. Therefore, a WEID has all attributes of an OID (e.g., it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID `6ba7b812-9dad-11d1-80b4-00c04fd430c8` according to [IETF RFC 9562](https://www.rfc-editor.org/rfc/rfc9562)).
 *   By default, the root of WEIDs is mapped to the OID tree at OID `1.3.6.1.4.1.37553.8`. This means that `urn:x-weid:?` equals OID `1.3.6.1.4.1.37553.8`.
 *   The Base36 arcs of a WEID are converted to Base10 and are then added to the OID tree below the arc `1.3.6.1.4.1.37553.8`. The check-digit (last arc of the WEID) is NOT used for the mapping to the OID tree.
-    For example, `urn:x-weid:EXAMPLE-ABC-3` is mapped to `1.3.6.1.4.1.37553.8.32488192274.13368`.
+    For example, `urn:x-weid:EXAMPLE-ABC-?` is mapped to `1.3.6.1.4.1.37553.8.32488192274.13368`.
 *   During the registration of a WEID, an alternative OID root (also called redirection) may be defined. Currently, the following redirections are defined:
     *   `urn:x-weid:O-?` is usually mapped to `1.3.6.1.4.1.37553.8.24`, however, there will be a redirection to the root of the OID tree.
     *   `urn:x-weid:P-?` is usually mapped to `1.3.6.1.4.1.37553.8.25`, however, there will be a redirection to OID `1.3.6.1.4.1`.
