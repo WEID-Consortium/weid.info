@@ -35,7 +35,7 @@ Attachments
 
 Copyright Notice
 
-   Copyright (c) 2011-2026 ViaThinkSoft, Webfan and the persons
+   Copyright (c) 2011-2026 ViaThinkSoft, Webfan, and the persons
    identified as the document authors.  All rights reserved.
 
    Licensed under the terms of the Apache 2.0 License.
@@ -53,18 +53,18 @@ Terminology
 1\. Introduction / What is a WEID?
 ==================================
 
-1.  A WEID (WEhowski IDentifier) is a **list of Base36 identifiers** (0..9, A..Z), called arcs, delimited with dashes, and with an Luhn-based check-digit as last arc.
+1.  A WEID (WEhowski IDentifier) is a **list of Base36 identifiers** (0..9, A..Z), called arcs, delimited with dashes, and with a Luhn-based check-digit as the last arc.
 2.  Examples of WEID are:
     *   `urn:x-weid:HELLO-WORLD-ABC-?`
     *   `urn:x-weid:O-2-RR-?`
     *   `urn:x-weid:D-COM-EXAMPLE-123-?`
-3.  The check-digit can either be calculated (see chapter 4), or it can be replaced with a `?` which denotes a check-digit-wildcard. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)) which can help you replace the wildcard with the correct checksum.
-4.  A WEID begins with the unofficial URN namespace `urn:x-weid:` (in accordiance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), `x-` stands for an unregistered experimental URN). The URN namespace (`urn:x-weid:`) is case insensitive, but it is recommended to write it in lowercase.
+3.  The check-digit can either be calculated (see chapter 4), or it can be replaced with a `?` which denotes a check-digit wildcard. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
+4.  A WEID begins with the unofficial URN namespace `urn:x-weid:` (in accordance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), `x-` stands for an unregistered experimental URN). The URN namespace (`urn:x-weid:`) is case insensitive, but it is recommended to write it in lowercase.
 5.  WEID are only valid if they are registered at the [Frdlweb Registration Authority](https://registry.frl.de/), or if one of the standard schemas (see chapter 2) is used.
 6.  Proprietary Sub-Namespaces on an application level are allowed. For example, `urn:x-weid:ABC-DEF-?:xyz123:456:/789` defines a payload `xyz123:456:/789` that is meaningful for a custom application that knows how to handle `urn:x-weid:ABC-DEF-?`.
 7.  Every WEID (excluding the information in proprietary sub-namespaces) can be converted to an OID and vice versa using mappings (see chapter 3)
 8.  The arcs in a WEID should be written in upper-case, but lowercase can be interpreted, too.
-9.  Padding with `0` characters is valid (e.g. `urn:x-weid:000EXAMPLE-?`), but not recommended. The paddings do not count towards the WeLuhn check digit.
+9.  Padding with `0` characters is valid (e.g., `urn:x-weid:000EXAMPLE-?`), but not recommended. The paddings do not count towards the WeLuhn check digit.
 
 2\. Acquiring a WEID
 ====================
@@ -75,7 +75,7 @@ If you own an OID or want to have a WEID that describes an OID, then you may use
 
 For example: The OID `2.999` will become `urn:x-weid:O-2-RR-?`.
 
-To get an OID in accordance with Recommendation ITU-T X.600 assigned, you need to find a Registration Authority that assigns you an OID. You can obtain an OID as WEID and manage your own arc, e.g. by:
+To receive an OID in accordance with Recommendation ITU-T X.600, you need to find a Registration Authority that assigns you an OID. You can obtain an OID as WEID and manage your own arc, e.g., by:
 
 *   [Free OID by Viathinksoft](https://hosted.oidplus.com/viathinksoft/?goto=oidplus%3Acom.viathinksoft.freeoid)
 *   [Public OID by Frdlweb](https://registry.frdl.de/?goto=oidplus%3Acom.viathinksoft.freeoid)
@@ -102,7 +102,7 @@ UUIDs can be created with a lot of tools, for example: [https://misc.daniel-mars
 
 ### (2.4) WEID based on Domain Name System (DNS) names
 
-If you own a DNS name (e.g. a domain name) of want to have a WEID based on a DNS name, then you may use the root `urn:x-weid:D-...`. The next arcs will be the DNS name in reverse order, encoded in (NOT converted to!) Base36.
+If you own a DNS name (e.g., a domain name) or want to have a WEID based on a DNS name, then you may use the root `urn:x-weid:D-...`. The next arcs will be the DNS name in reverse order, encoded in (NOT converted to!) Base36.
 
 For example, `example.com` will become `urn:x-weid:D-COM-EXAMPLE-?`.
 
@@ -114,24 +114,24 @@ TLD-Only domains ARE allowed for the purpose of forming a Domain-WEID.
 
 ### (2.5) Other WEID
 
-Any other WEID (such as `urn:x-weid:EXAMPLE`) need a registration/request at registry.frl.de. During that registration/request, an entry in the WEID root (together with an OID, and if required, an OID redirection) will be added.
+Any other WEID (such as `urn:x-weid:EXAMPLE`) needs a registration/request at registry.frl.de. During that registration/request, an entry in the WEID root (together with an OID and, if required, an OID redirection) will be added.
 
 3\. Mapping a WEID to the OID tree
 ==================================
 
-*   Each WEID (except the deprecated fully proprietary WEID) can be represented by an OID and vice-versa. Therefore, a WEID has all attributes of an OID (e.g. it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID 6ba7b812-9dad-11d1-80b4-00c04fd430c8 according to [IETF RFC 9562](https://www.rfc-editor.org/rfc/rfc9562)).
-*   By default, the root of WEIDs are mapped to the OID tree at OID `1.3.6.1.4.1.37553.8`. This means that `urn:x-weid:?` equals OID `1.3.6.1.4.1.37553.8`.
+*   Each WEID (except the deprecated fully proprietary WEID) can be represented by an OID and vice versa. Therefore, a WEID has all attributes of an OID (e.g., it can be used to generate a Version 5 SHA1 name-based UUID with the Namespace UUID 6ba7b812-9dad-11d1-80b4-00c04fd430c8 according to [IETF RFC 9562](https://www.rfc-editor.org/rfc/rfc9562)).
+*   By default, the root of WEIDs is mapped to the OID tree at OID `1.3.6.1.4.1.37553.8`. This means that `urn:x-weid:?` equals OID `1.3.6.1.4.1.37553.8`.
 *   The Base36 arcs of a WEID are converted to Base10 and are then added to the OID tree below the arc `1.3.6.1.4.1.37553.8`. The check-digit (last arc of the WEID) is NOT used for the mapping to the OID tree.
     For example, `urn:x-weid:EXAMPLE-ABC-3` is mapped to `1.3.6.1.4.1.37553.8.32488192274.13368`.
 *   During the registration of a WEID, an alternative OID root (also called redirection) may be defined. Currently, the following redirections are defined:
-    *   `urn:x-weid:O-?` is usually mapped to `1.3.6.1.4.1.37553.8.24`, however there will be a redirection to the OID tree root.
-    *   `urn:x-weid:P-?` is usually mapped to `1.3.6.1.4.1.37553.8.25`, however there will be a redirection to OID `1.3.6.1.4.1`.
-    *   `urn:x-weid:U-9-?` is usually mapped to `1.3.6.1.4.1.37553.8.30`, however there will be a redirection to OID `2.25`.
+    *   `urn:x-weid:O-?` is usually mapped to `1.3.6.1.4.1.37553.8.24`, however, there will be a redirection to the OID tree root.
+    *   `urn:x-weid:P-?` is usually mapped to `1.3.6.1.4.1.37553.8.25`, however, there will be a redirection to OID `1.3.6.1.4.1`.
+    *   `urn:x-weid:U-9-?` is usually mapped to `1.3.6.1.4.1.37553.8.30`, however, there will be a redirection to OID `2.25`.
     *   Other WEID arcs (such as `urn:x-weid:D-?`) do not have an OID redirection. They will be mapped to the OID tree through `1.3.6.1.4.1.37553.8`.
     *   Future alternative mapping may be announced via a [WEID Specification Change](https://registry.frdl.de/?goto=oid%3A1.3.6.1.4.1.37553.8.1.8.1.6.1) by the WEID Consortium.
 *   The WeLuhn check-digit (see chapter 4) is based on the default OID, NOT on the redirection target OID. Hence, the checksum can be calculated/verified without knowing the OID mapping.
 *   In case proprietary sub-namespaces (such as `urn:x-weid:P-SX0-?:foobar`) are used, the information of the sub-namespaces is not mapped to the OID tree.
-*   Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary length arcs (i.e. implementing BigInteger rather than 32-bit integers).
+*   Please note that some clients handling OIDs cannot handle arcs that have a specific size ([more information here](https://misc.daniel-marschall.de/asn.1/oid_facts.html)). Implementers of WEID strongly encourage allowing arbitrary-length arcs (i.e., implementing BigInteger rather than 32-bit integers).
 
 4\. Calculation of the WeLuhn check-digit
 =========================================
@@ -140,7 +140,7 @@ The WeLuhn check digit of `urn:x-weid:P-SX0-?` is calculated as follows:
 
 *   The URN prefix (`urn:x-weid:`) is removed, as well as 0-paddings (`001` shall be `1`) and hyphens, so we now have `PSX0`.
 *   `136141SZ58` will be added to the front, so we have `136141SZ58PSX0`. (Note that this prefix resembles the OID that points to the WEID root. No OID redirection must be applied for calculating the check-digit.)
-*   Then, `A` will be replaced with 10, `B` will be replaced with `11`, etc., so we now have `1361412835582528330`. This number is the payload for the standard Luhn algorithm which works as follows:
+*   Then, `A` will be replaced with 10, `B` will be replaced with `11`, etc., so we now have `1361412835582528330`. This number is the payload for the standard Luhn algorithm, which works as follows:
     *   Start from the rightmost digit. Moving left, double the value of every second digit (including the rightmost digit).
     *   Sum the digits of the resulting value in each position.
     *   Sum the resulting values from all positions, `s`.
@@ -152,7 +152,7 @@ The [online converter](https://weid.info/implementations.html) can be used to ca
 5\. Deprecated features
 =======================
 
-The following things are deprecated, but are still valid for backwards-compatibility:
+The following things are deprecated, but are still valid for backwards compatibility:
 
 *   **(5.1) `weid:`** is a deprecated notation of `urn:x-weid:`
 *   **(5.2) `urn:x-weid:pen:<pen-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `1.3.6.1.4.1.<base10>.<base10>`, for example `urn:x-weid:pen:SX0-7PR-?` is equal to OID `1.3.6.1.4.1.37476.9999`.
@@ -160,21 +160,21 @@ The following things are deprecated, but are still valid for backwards-compatibi
 *   **(5.4) `urn:x-weid:uuid:<uuid-as-base36>-<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:3D576PEXUZ1EVVF3MKRKOTYB-7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
 *   **(5.5) `urn:x-weid:uuid:<uuid-as-split-base16>:<base36>-?`** is a deprecated alternative notation of OID `2.25.<base10>.<base10>`. For example, `urn:x-weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:7PR-?` is equal to OID `2.25.2098739235139107623796528785225371043.9999`.
 *   **(5.6) `urn:x-weid:root:?`** is a deprecated alternative notation of the OID root. For example, `urn:x-weid:root:2-RR-?` is equal to OID `2.999`.
-*   **(5.7) `urn:x-weid:<domain.tld>:?`** is a deprecated alternative notation of `urn:x-weid:9-DNS-<tld>-<domain>-?`. (Note that the current definition for DNS based WEID uses the root `urn:x-weid:D-?` instead of `urn:x-weid:9-DNS-?`.) In this sub-namespace notation, TLD-Only domains ARE NOT allowed for the purpose of forming a Domain-WEID, since it may collide with other sub-namespaces.
-*   **(5.8) `urn:x-weid:x-weid:x-...:`**, i.e. sub-namespaces starting with `x-` and not containing a dot (`.`), is a deprecated feature called "custom / vendor-specific WEID sub-namespaces", creating WEID that are fully proprietary with custom rules, and they may or may not have a representation as OID. The only use was `urn:x-weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)). Instead of using fully proprietary WEID, please use a regular WEID, and add a (now allowed) sub-namespace to that WEID.
+*   **(5.7) `urn:x-weid:<domain.tld>:?`** is a deprecated alternative notation of `urn:x-weid:9-DNS-<tld>-<domain>-?`. (Note that the current definition for DNS-based WEID uses the root `urn:x-weid:D-?` instead of `urn:x-weid:9-DNS-?`.) In this sub-namespace notation, TLD-Only domains ARE NOT allowed for the purpose of forming a Domain-WEID, since it may collide with other sub-namespaces.
+*   **(5.8) `urn:x-weid:x-weid:x-...:`**, i.e., sub-namespaces starting with `x-` and not containing a dot (`.`), is a deprecated feature called "custom / vendor-specific WEID sub-namespaces", creating WEID that are fully proprietary with custom rules, and they may or may not have a representation as OID. The only use was `urn:x-weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)). Instead of using a fully proprietary WEID, please use a regular WEID, and add a (now allowed) sub-namespace to that WEID.
 *   **(5.9) The "Class" terminology is removed.** It was earlier defined as:
     *   "Class A" (was `weid:root:`)
     *   "Class B" (was `weid:pen:` and `weid:uuid:`, as they are below "Class A" `weid:root:`)
     *   "Class C" (was `weid:`, because it was below "Class B" `weid:pen:`)
     *   "Class D" (anything below "Class C" `weid:`, such as `weid:example.com:`)
-    *   Now everything is "Class D" (e.g. `weid:O-?` is below "Class C" `weid:?`)
+    *   Now everything is "Class D" (e.g., `weid:O-?` is below "Class C" `weid:?`)
 
 6\. Additional notes
 ====================
 
-At [www.weid.info](http://www.weid.info) you can find more information and announcements of changes.
+At [www.weid.info](http://www.weid.info), you can find more information and announcements of changes.
 
-At [https://weid.info/implementations.html](https://weid.info/implementations.html) you can find an online converter that converted WEID to OID and vice-versa, which also can calculate check-digits (enter a WEID with `-?` suffix and you will get the correct check digit back).
+At [https://weid.info/implementations.html](https://weid.info/implementations.html), you can find an online converter that converts WEID to OID and vice versa, which can also calculate check-digits (enter a WEID with `-?` suffix, and you will get the correct check digit back).
 
 The current version of the specification is 16, which is identified with the OID `1.3.6.1.4.1.37553.8.1.8.1.6.1.16` (`urn:x-weid:1-8-1-6-1-G-?`).
 
@@ -273,7 +273,7 @@ ASN1: `{ ... uuid-oid(30) }`
 10\. Acknowledgements
 =====================
 
-I would like to thank Melanie Wehowski for her long time support in OIDplus and WEID projects. Thanks to the authors of these free tools which did a very good job in validating various contents of this document:
+I would like to thank Melanie Wehowski for her long-time support in OIDplus and WEID projects. Thanks to the authors of these free tools that did a good job in validating various contents of this document:
 
 This document was written in Nroff Internet Draft Editor by 3xA Security. [https://aaa-sec.com/nroffedit/](https://aaa-sec.com/nroffedit/) [https://misc.daniel-marschall.de/patches/nroffedit/](https://misc.daniel-marschall.de/patches/nroffedit/) ("year 2020" patch)
 
@@ -291,14 +291,14 @@ URI: [https://www.viathinksoft.com/](https://www.viathinksoft.com/)
 Appendix A: Specification Change Changelog
 ==========================================
 
-The following change log entries are just for information. They might contain features which are already deprecated. Hence, only information outside the "Changelog" chapter may be used for implementations.
+The following change log entries are just for information. They might contain features that are already deprecated. Hence, only information outside the "Changelog" chapter may be used for implementations.
 
 Changes as of Spec Change 1 - 7
 -------------------------------
 
-In the initial version of the WEID specification of 2011, only OIDs below the WEID root arc `1.3.6.1.4.1.37553.8` could be used. In a later definition by Daniel Marschall, any existing OID can be written in WEID notation, by defining sub-namespaces.
+In the initial version of the WEID specification of 2011, only OIDs below the WEID root arc `1.3.6.1.4.1.37553.8` could be used. In a later definition by Daniel Marschall, any existing OID can be written in WEID notation by defining sub-namespaces.
 
-The detailled descriptions of the changes of Spec Change 1 till 7 are not available anymore. Only a short description from the OID RA are existing:
+The detailed descriptions of the changes of Spec Change 1 through 7 are not available anymore. Only a short description from the OID RA exists:
 
 1.  `weid-spec-change-2013-6-27-1-identifier`
 2.  `weid-spec-change-2013-6-27-2-weix-canceled-and-replaced`
@@ -312,15 +312,15 @@ Changes as of Spec Change 8: Sub-namespaces
 -------------------------------------------
 
 *   Besides the classic `weid:` namespace (that represents OID `1.3.6.1.4.1.37553.8`), new namespaces `weid:root:` (which represents the root OID) and `weid:pen:` (which represents OID `1.3.6.1.4.1`) are introduced.
-*   When choosing a (sub-)namespace, it is recommended to choose a sub-namespace that is closest to the OID you want to describe, producing the shortest WEID therefore. For example, `weid:pen:SX0-7PR-6` should be chosen rather than `weid:root:1-3-6-1-4-1-SX0-7PR-6`.
+*   When choosing a (sub-)namespace, it is recommended to choose a sub-namespace that is closest to the OID you want to describe, producing the shortest WEID, therefore. For example, `weid:pen:SX0-7PR-6` should be chosen rather than `weid:root:1-3-6-1-4-1-SX0-7PR-6`.
 *   The arcs in a WEID should be written in upper-case, but lowercase can be interpreted, too.
 *   The URN namespace (`weid:`, `weid:pen:`, `weid:root:`) is case insensitive, but it is recommended to write it in lowercase.
-*   Padding with `0` characters is valid (e.g. `weid:000EXAMPLE-3`), but not recommended. The paddings do not count toward the WeLuhn check digit.
+*   Padding with `0` characters is valid (e.g., `weid:000EXAMPLE-3`), but not recommended. The paddings do not count toward the WeLuhn check digit.
 
 Changes as of Spec Change 9: Wildcard check digit
 -------------------------------------------------
 
-*   In Spec Change 9 (08 March 2022), an alternative syntax of WEIDs is defined. This alternative syntax replaces the checksum with a wildcard in the form of a question mark symbol, for example, `weid:root:2-RR-?` instead of `weid:root:2-RR-2`. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)) which can help you replace the wildcard with the correct checksum.
+*   In Spec Change 9 (08 March 2022), an alternative syntax of WEIDs is defined. This alternative syntax replaces the checksum with a wildcard in the form of a question mark symbol, for example, `weid:root:2-RR-?` instead of `weid:root:2-RR-2`. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
 
 Changes with [Spec Change 10: Domain-WEID](https://github.com/frdl/weid/issues/3)
 ---------------------------------------------------------------------------------
@@ -338,10 +338,10 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
 
 *   Spec Change 11 (07 August 2023) allows custom / vendor-specific WEID sub-namespaces.
 *   Such namespaces must begin with `x-`, for example: `weid:x-contoso:ABC-DEF-?` could be a WEID defined by Contoso Ltd.
-*   As usual for WEID, the namespace is case insensitive.
+*   As usual for WEID, the namespace is case-insensitive.
 *   To avoid confusion with Spec Change 10 Domain-WEID, the sub-namespace must not contain a dot (`.`).
 *   The vendor has complete control over the namespace and can define the behavior. However, it is recommended to make use of Base36 and the weLuhn check digit.
-*   Since the vendor specifies the namespace, it is up to the vendor if they allow the mapping of their WEID-Namespace to the OID-Tree. In comparison to Class A/B/C/D WEID which are 100% OID compatible, custom WEID might not be OID-compatible at all.
+*   Since the vendor specifies the namespace, it is up to the vendor if they allow the mapping of their WEID-Namespace to the OID-Tree. In comparison to Class A/B/C/D WEID, which are 100% OID compatible, a custom WEID might not be OID-compatible at all.
 *   Currently, the following custom namespaces are known:
     *   `weid:x-frdl:[Base36_NS]-[SubNS]:[Base36_ID]-[CheckDigit]` to be defined/implemented by Frdlweb ([base idea here](https://frdl.de/dynamic-weid-namespace-class)).
     *   If you know more namespaces, or if you are the author of a custom namespace, please let us know.
@@ -349,17 +349,17 @@ Changes with [Spec Change 11: Proprietary Namespaces](https://github.com/frdl/we
 Changes with [Spec Change 12: URN Namespace](https://github.com/ViaThinkSoft/standards/issues/1)
 ------------------------------------------------------------------------------------------------
 
-*   Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordiance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), the URN namespace of WEID is `urn:x-weid:` (whereas `x-` stands for an unregistered experimental URN). Hence, `weid:2-RR-2` can be written as `urn:x-weid:2-RR-2`.
+*   Spec Change 12 (09 September 2024) defines the Uniform Resource Name (URN) for WEID. In accordance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), the URN namespace of WEID is `urn:x-weid:` (whereas `x-` stands for an unregistered experimental URN). Hence, `weid:2-RR-2` can be written as `urn:x-weid:2-RR-2`.
 
 Changes with [Spec Change 13: UUID WEID](https://github.com/WEID-Consortium/weid.info/issues/1)
 -----------------------------------------------------------------------------------------------
 
-*   Spec Change 13 (1 January 2025) defines the WEID namespaces which contain an UUID. The Sub-Namespaces `weid:uuid:<uuid-base16>:...` (Also called "Class B / UUID" WEID) is equal to `weid:root:2-P-<uuid-base36>:...` which is equal to the root OID `2.25.<uuid-base10>...`.
+*   Spec Change 13 (1 January 2025) defines the WEID namespaces, which contain a UUID. The Sub-Namespaces `weid:uuid:<uuid-base16>:...` (Also called "Class B / UUID" WEID) is equal to `weid:root:2-P-<uuid-base36>:...` which is equal to the root OID `2.25.<uuid-base10>...`.
 
 Changes with [Spec Change 14: UUID WEID Update](https://github.com/WEID-Consortium/weid.info/issues/2)
 ------------------------------------------------------------------------------------------------------
 
-*   Spec Change 14 (6 January 2025) defines the special case `weid:uuid:?` to be an alias of `weid:root:2-P-3` which is OID `2.25`.
+*   Spec Change 14 (6 January 2025) defines the special case `weid:uuid:?` to be an alias of `weid:root:2-P-3`, which is OID `2.25`.
 
 Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Consortium/weid.info/issues/3)
 ----------------------------------------------------------------------------------------------------------
@@ -370,20 +370,20 @@ Changes with [Spec Change 15: UUID+PEN WEID Update](https://github.com/WEID-Cons
 Changes with [Spec Change 16: Large revamp of WEID](https://github.com/WEID-Consortium/weid.info/issues/4)
 ----------------------------------------------------------------------------------------------------------
 
-*   Deprecating sub-namespaces (e.g. `weid:pen:...`), as they are confusing. Instead, let everything be a normal WEID (e.g. `weid:P-...`), just with different OID mappings based on the WEID arc.
+*   Deprecating sub-namespaces (e.g., `weid:pen:...`), as they are confusing. Instead, let everything be a normal WEID (e.g., `weid:P-...`), just with different OID mappings based on the WEID arc.
     *   `weid:root:2-RR-?` will become `weid:O-2-RR-?` which is mapped to `2.999`.
     *   `weid:pen:SX0-?` and its alternative notation `weid:pen:37476:?` will become `urn:x-weid:P-SX0-?` and will be mapped to `urn:oid:1.3.6.1.4.1.37476`.
     *   `weid:uuid:2BCJZ644V24W81UOAX4BK4QWS-?` and its alternative notation `weid:uuid:271b73c9-2b52-4581-8d71-b4a02d55813c:?` will become `urn:x-weid:U-2BCJZ644V24W81UOAX4BK4QWS-?` and will be mapped to `urn:oid:2.25.51982432266164560271085076081362174268`.
-    *   `weid:example.com:?` and its alternative WEID `weid:9-UUID-COM-EXAMPLE-?` will become `urn:x-weid:D-COM-EXAMPLE-?` and will the mapped to the OID tree like a normal WEID (below `1.3.6.1.4.1.37553.8`).
+    *   `weid:example.com:?` and its alternative WEID `weid:9-UUID-COM-EXAMPLE-?` will become `urn:x-weid:D-COM-EXAMPLE-?` and will be mapped to the OID tree like a normal WEID (below `1.3.6.1.4.1.37553.8`).
 *   Deprecate fully custom WEID (such as `weid:x-foobar:anything-here`), as they don’t have a standardized way to be mapped to the OID tree and need a spec change to be supported.
-*   Any WEID can now have its own sub-namespaces, e.g. `urn:x-weid:P-SX0` can be extended to `urn:x-weid:P-SX0:foo:bar:/anything?p=1` (this way, proprietary things can be done).
-*   The terminology "Class A", "Class B", "Class C", "Class D" will be removed, since now everything is "Class D".
+*   Any WEID can now have its own sub-namespaces, e.g., `urn:x-weid:P-SX0` can be extended to `urn:x-weid:P-SX0:foo:bar:/anything?p=1` (this way, proprietary things can be done).
+*   The terminology "Class A", "Class B", "Class C", and "Class D" will be removed, since now everything is "Class D".
 *   The use of the `weid:` namespace is deprecated. Instead, use `urn:x-weid:`.
     (In accordance with RFC 3406, the URN namespace of WEID is `urn:x-weid:`, whereas `x-` stands for an unregistered experimental URN).
-*   Although this change is subtle, the new definition of a WEID is independent of the OID tree. Previously, a WEID was defined as an alternate notation of OID. Now, a WEID is defined as list of Base36 arcs with a check-digit, and the OID mapping (or redirection) is a feature of the WEID.
+*   Although this change is subtle, the new definition of a WEID is independent of the OID tree. Previously, a WEID was defined as an alternate notation of an OID. Now, a WEID is defined as a list of Base36 arcs with a check-digit, and the OID mapping (or redirection) is a feature of the WEID.
 
-Appendix B: Future changes in consideration
+Appendix B: Future changes for consideration
 ===========================================
 
-*   Removal of check-digit, as it is often confused with an arc, and seldom be calculated and usually written as wildcard `-?`.
+*   Removal of check-digit, as it is often confused with an arc, and is seldom calculated and usually written as wildcard `-?`.
 *   Replacing `urn:x-weid` (WEhowski IDentifier) with `urn:x-mwid` (Marschall Wehowski IDentifier) due to the incompatibility that would arise by removing the check-digit.
