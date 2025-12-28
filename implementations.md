@@ -27,12 +27,12 @@ We recommend the software [OIDplus](https://oidplus.com/) if you like to run you
 You can use our online converter to test the conversion between OID/WEID:
 
 <h4>Convert OID to WEID</h4>
-<p><b>Input:</b> <input type="text" value="2.999" name="oid" id="oid" oninput="oidInputChanged();" style="width:500px"></p>
+<p><b>Input:</b> urn:oid:<input type="text" value="2.999" name="oid" id="oid" oninput="oidInputChanged();" style="width:500px"></p>
 <div id="weid2a"></div>
 <div id="oid2a"></div>
 <br>
 <h4>Convert WEID to OID</h4>
-<p><b>Input:</b> <input type="text" value="weid:EXAMPLE-?" name="weid" id="weid" oninput="weidInputChanged();" style="width:500px"></p>
+<p><b>Input:</b> urn:x-weid:<input type="text" value="EXAMPLE-?" name="weid" id="weid" oninput="weidInputChanged();" style="width:500px"></p>
 <div id="weid2b"></div>
 <div id="oid2b"></div>
 <br><br>	
