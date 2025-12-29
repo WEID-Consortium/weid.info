@@ -58,7 +58,7 @@ Terminology
     *   `urn:x-weid:HELLO-WORLD-ABC-?`
     *   `urn:x-weid:O-2-RR-?`
     *   `urn:x-weid:D-COM-EXAMPLE-123-?`
-3.  The check-digit can either be calculated (see chapter 4), or it can be replaced with a `?` which denotes a check-digit wildcard. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
+3.  The check-digit can either be calculated (see chapter 4), or it can be replaced with a `?` which denotes a check-digit wildcard. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://co.weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
 4.  A WEID begins with the unofficial URN namespace `urn:x-weid:` (in accordance with [IETF RFC 3406](https://www.rfc-editor.org/rfc/rfc3406), `x-` stands for an unregistered experimental URN). The URN namespace (`urn:x-weid:`) is case-insensitive, but it is recommended to write it in lowercase.
 5.  WEID are only valid if they are registered at the [Frdlweb Registration Authority](https://registry.frl.de/), or if one of the standard schemas (see chapter 2) is used.
 6.  WEID has support for namespace-internal NSS qualifiers, expressed as colon-separated suffixes. For example, `urn:x-weid:ABC-DEF-?:xyz123:456:/789` defines a qualifier `xyz123:456:/789` that is meaningful for an application that knows how to handle `urn:x-weid:ABC-DEF-?`.
@@ -147,7 +147,7 @@ The WeLuhn check digit of `urn:x-weid:P-SX0-?` is calculated as follows:
     *   The check digit is calculated by `((10-s mod 10) mod 10)`.
 *   In our case, the Luhn check digit is `0`, resulting in the WEID `urn:x-weid:P-SX0-0`
 
-The [online converter](https://weid.info/implementations.html) can be used to calculate the check digit (enter a WEID that ends with `-?` and receive the calculated check digit).
+The [online converter](https://co.weid.info/implementations.html) can be used to calculate the check digit (enter a WEID that ends with `-?` and receive the calculated check digit).
 
 5\. Deprecated notations
 ========================
@@ -224,7 +224,7 @@ Although the list above is complete, it should be stated explicitly that any NSS
 
 At [www.weid.info](http://www.weid.info), you can find more information and announcements of changes.
 
-At [https://weid.info/implementations.html](https://weid.info/implementations.html), you can find an online converter that converts WEID to OID and vice versa, which can also calculate check-digits (enter a WEID with `-?` suffix, and you will get the correct check digit back).
+At [https://co.weid.info/implementations.html](https://co.weid.info/implementations.html), you can find an online converter that converts WEID to OID and vice versa, which can also calculate check-digits (enter a WEID with `-?` suffix, and you will get the correct check digit back).
 
 The current version of the specification is 16, which is identified with the OID `1.3.6.1.4.1.37553.8.1.8.1.6.1.16` (`urn:x-weid:1-8-1-6-1-G-?`).
 
@@ -370,7 +370,7 @@ Changes as of Spec Change 8: NSS prefixes (also called sub-namespaces)
 Changes as of Spec Change 9: Wildcard check digit
 -------------------------------------------------
 
-*   In Spec Change 9 (08 March 2022), an alternative syntax of WEIDs is defined. This alternative syntax replaces the checksum with a wildcard in the form of a question mark symbol, for example, `weid:root:2-RR-?` instead of `weid:root:2-RR-2`. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
+*   In Spec Change 9 (08 March 2022), an alternative syntax of WEIDs is defined. This alternative syntax replaces the checksum with a wildcard in the form of a question mark symbol, for example, `weid:root:2-RR-?` instead of `weid:root:2-RR-2`. One useful scenario can be the documentation of incomplete/template WEIDs. Another usage is converters (like our [online converter](https://co.weid.info/implementations.html)), which can help you replace the wildcard with the correct checksum.
 
 Changes with [Spec Change 10: Domain-WEID](https://github.com/frdl/weid/issues/3)
 ---------------------------------------------------------------------------------
