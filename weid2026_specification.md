@@ -110,7 +110,9 @@ Any other WEID arcs are synchronous to the OID arcs, just converted between base
 
 For example, `urn:x-weid:D-COM-EXAMPLE-7PR-?` is equal to OID `1.3.6.1.4.1.37553.8.13.16438.32488192274.9999`.
 
-TLD-Only domains ARE allowed for the purpose of forming a Domain-WEID.
+TLD-Only domains such as `urn:x-weid:D-MICROSOFT-?` are allowed for the purpose of forming a Domain-WEID.
+
+Any amount of subdomains such as `urn:x-weid:D-DOM-EXAMPLE-SUB-?` are allowed for the purpose of forming a Domain-WEID.
 
 ### (2.5) Other WEID
 
