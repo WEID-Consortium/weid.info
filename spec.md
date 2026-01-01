@@ -1,5 +1,5 @@
 # WEID Specification
-<!--
+<!---
 ### ViaThinkSoft/Webfan Standards Header
 
 ```
@@ -223,7 +223,7 @@ At [https://co.weid.info/implementations.html](https://co.weid.info/implementati
 The current version of the specification is 16, which is identified with the OID `1.3.6.1.4.1.37553.8.1.8.1.6.1.16` (`urn:x-weid:1-8-1-6-1-G-?`).
 
 The standard is also released as [ViaThinkSoft/Webfan Standard No. 3](https://www.viathinksoft.de/std/viathinksoft-std-0003-weid.html)
-<!--
+<!---
 ### 7. Security Considerations
 
 None.
