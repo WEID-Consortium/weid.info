@@ -85,6 +85,8 @@ class WeidOidConverter {
 	private static function oidSanitize(string $oid) {
 		$oid = trim($oid);
 
+		$oid = preg_replace('@^urn:oid:@ismU', '', $oid) ?? $oid;
+
 		if (substr($oid,0,1) == '.') $oid = substr($oid,1); // remove leading dot
 
 		if ($oid != '') {
@@ -122,7 +124,7 @@ class WeidOidConverter {
 	public static function weid2oid(string &$weid) {
 		$weid = trim($weid);
 
-		$weid = preg_replace('@^urn:x-weid:@', 'weid:', $weid) ?? $weid;
+		$weid = preg_replace('@^weid:@ismU', 'urn:x-weid:', $weid) ?? $weid;
 
 		$p = strrpos($weid,':');
 		$namespace = substr($weid, 0, $p+1);
@@ -131,35 +133,35 @@ class WeidOidConverter {
 
 		$namespace = strtolower($namespace); // namespace is case insensitive
 
-		if ($namespace == 'weid:uuid:') {
+		if ($namespace == 'urn:x-weid:uuid:') {
 			// Spec Change 15: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/3 )
-			if (count(explode(':',$weid)) != 3) return false;
-			$uuidrest = explode(':', $weid)[2];
-			$alt_weid = 'weid:root:2-P-'.$uuidrest;
+			if (count(explode(':',$weid)) != 4) return false;
+			$uuidrest = explode(':', $weid)[3];
+			$alt_weid = 'urn:x-weid:root:2-P-'.$uuidrest;
 			$oid = self::weid2oid($alt_weid);
 			if ($oid === false) return false;
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
 			return $oid;
-		} else if (strpos($namespace, 'weid:uuid:') === 0) {
+		} else if (strpos($namespace, 'urn:x-weid:uuid:') === 0) {
 			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
-			if (count(explode(':',$weid)) != 4) return false;
-			$uuid = explode(':', $weid)[2];
-			$uuidrest = explode(':', $weid)[3];
+			if (count(explode(':',$weid)) != 5) return false;
+			$uuid = explode(':', $weid)[3];
+			$uuidrest = explode(':', $weid)[4];
 			if (!preg_match('@^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$@', $uuid, $m)) return false;
-			$alt_weid = 'weid:root:2-P-'.self::base_convert_bigint(str_replace('-','',$uuid), 16, 36).'-'.$uuidrest;
+			$alt_weid = 'urn:x-weid:root:2-P-'.self::base_convert_bigint(str_replace('-','',$uuid), 16, 36).'-'.$uuidrest;
 			$oid = self::weid2oid($alt_weid);
 			if ($oid === false) return false;
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
 			return $oid;
 		}
 
-		if (strpos($namespace, 'weid:') === 0) {
-			$domainpart = explode('.', explode(':',$weid)[1]);
+		if (strpos($namespace, 'urn:x-weid:') === 0) {
+			$domainpart = explode('.', explode(':',$weid)[2]);
 			if (count($domainpart) > 1) {
 				// Spec Change 10: Class D / Domain-WEID ( https://github.com/frdl/weid/issues/3 )
-				if (count(explode(':',$weid)) != 3) return false;
-				$domainrest = explode(':',$weid)[2];
-				$alt_weid = "weid:9-DNS-" . strtoupper(implode('-',array_reverse($domainpart))) . "-" . $domainrest;
+				if (count(explode(':',$weid)) != 4) return false;
+				$domainrest = explode(':',$weid)[3];
+				$alt_weid = 'urn:x-weid:9-DNS-' . strtoupper(implode('-',array_reverse($domainpart))) . "-" . $domainrest;
 				$oid = self::weid2oid($alt_weid);
 				if ($oid === false) return false;
 				$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
@@ -167,26 +169,26 @@ class WeidOidConverter {
 			}
 		}
 
-		if (strpos($namespace, 'weid:x-') === 0) {
+		if (strpos($namespace, 'urn:x-weid:x-') === 0) {
 			// Spec Change 11: Proprietary Namespaces ( https://github.com/frdl/weid/issues/4 )
 			return "[Proprietary WEID Namespace]";
-		} else if ($namespace == 'weid:') {
+		} else if ($namespace == 'urn:x-weid:') {
 			// Class C
 			$base = '1-3-6-1-4-1-SZ5-8';
-		} else if ($namespace == 'weid:pen:') {
+		} else if ($namespace == 'urn:x-weid:pen:') {
 			// Class B (PEN)
 			$base = '1-3-6-1-4-1';
-		} else if (strpos($namespace, 'weid:pen:') === 0) {
+		} else if (strpos($namespace, 'urn:x-weid:pen:') === 0) {
 			// Spec Change 15: "weid:pen:<pen-base10>:?" as alias of "weid:pen:<pen-base36>-?"
-			if (count(explode(':',$weid)) != 4) return false;
-			$pen = explode(':', $weid)[2];
-			$penrest = explode(':', $weid)[3];
-			$alt_weid = 'weid:root:1-3-6-1-4-1-'.self::base_convert_bigint($pen, 10, 36) . "-" . $penrest;
+			if (count(explode(':',$weid)) != 5) return false;
+			$pen = explode(':', $weid)[3];
+			$penrest = explode(':', $weid)[4];
+			$alt_weid = 'urn:x-weid:root:1-3-6-1-4-1-'.self::base_convert_bigint($pen, 10, 36) . "-" . $penrest;
 			$oid = self::weid2oid($alt_weid);
 			if ($oid === false) return false;
 			$weid = substr($weid, 0, -1) . substr($alt_weid, -1); // fix wildcard checksum if required (transfer checksum from $alt_weid to $weid)
 			return $oid;
-		} else if ($namespace == 'weid:root:') {
+		} else if ($namespace == 'urn:x-weid:root:') {
 			// Class A
 			$base = '';
 		} else {
@@ -269,42 +271,42 @@ class WeidOidConverter {
 
 		if ($is_class_c) {
 			$weidstr = substr($weidstr, strlen('1-3-6-1-4-1-SZ5-8-'));
-			$namespace = 'weid:';
+			$namespace = 'urn:x-weid:';
 		} else if ($is_class_b_pen) {
 			// Deprecated as of Spec Change 16:
 			/*
 			$weidstr = substr($weidstr, strlen('1-3-6-1-4-1-'));
-			$namespace = 'weid:pen:';
+			$namespace = 'urn:x-weid:pen:';
 			*/
 			// Recommended as of Spec Change 16:
 			$weidstr = 'P' . substr($weidstr, strlen('1-3-6-1-4-1'));
-			$namespace = 'weid:';
+			$namespace = 'urn:x-weid:';
 		} else if ($is_class_b_uuid) {
 			// Deprecated as of Spec Change 16:
 			/*
 			if ($weidstr == '2-P') {
 				// Spec Change 14: Special case: OID 2.25 is weid:uuid:?
 				$weidstr = '';
-				$namespace = 'weid:uuid:';
+				$namespace = 'urn:x-weid:uuid:';
 			} else {
 				// Spec Change 13: UUID WEID
 				$uuid_base36 = explode('-', $weidstr)[2];
 				$weidstr = substr($weidstr, strlen('2-P-') + strlen($uuid_base36) + strlen('-'));
-				$namespace = 'weid:uuid:' . self::formatAsUUID(self::base_convert_bigint($uuid_base36, 36, 16)) . ':';
+				$namespace = 'urn:x-weid:uuid:' . self::formatAsUUID(self::base_convert_bigint($uuid_base36, 36, 16)) . ':';
 			}
 			*/
 			// Recommended as of Spec Change 16:
 			$weidstr = 'U' . substr($weidstr, strlen('2-U'));
-			$namespace = 'weid:';
+			$namespace = 'urn:x-weid:';
 		} else if ($is_class_a) {
 			// Deprecated as of Spec Change 16:
 			/*
 			$weidstr = $weidstr;
-			$namespace = 'weid:root:';
+			$namespace = 'urn:x-weid:root:';
 			*/
 			// Recommended as of Spec Change 16:
 			$weidstr = $weidstr == '' ? 'O' : 'O-' . $weidstr;
-			$namespace = 'weid:';
+			$namespace = 'urn:x-weid:';
 		} else {
 			// should not happen
 			return false;
