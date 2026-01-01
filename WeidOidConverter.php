@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WEID<=>OID Converter
- * (c) Webfan.de, ViaThinkSoft
- * Revision 2025-01-06
- **/
+* WEID<=>OID Converter
+* (c) Webfan.de, ViaThinkSoft
+* Revision 2025-12-28
+**/
 
 // What is a WEID?
 //     A WEID (WEhowski IDentifier) is an alternative representation of an
@@ -14,32 +14,24 @@
 //
 // The full specification can be found here: https://co.weid.info/spec.html
 //
-// This converter supports WEID as of Spec Change #15
+// This converter supports WEID as of Spec Change #16
 //
 // A few short notes:
-//     - There are several classes of WEIDs which have different OID bases:
-//           "Class A" WEID:          weid:root:2-RR-?
-//                                    oid:2.999
-//                                    WEID class base OID: (OID Root)
-//           "Class B" PEN WEID:      weid:pen:SX0-7PR-?
-//                                    oid:1.3.6.1.4.1.37476.9999
-//                                    WEID class base OID: 1.3.6.1.4.1
-//           "Class B" UUID WEID:     weid:uuid:019433d5-535f-7098-9e0b-f7b84cf74da3:SX0-?
-//                                    oid:2.25.2098739235139107623796528785225371043.37476
-//                                    WEID class base OID: 2.25.<uuid>
-//           "Class C" WEID:          weid:EXAMPLE-?
+//     - Examples of various WEID/OID mappings:
+//           Regular WEID:            weid:EXAMPLE-?
 //                                    oid:1.3.6.1.4.1.37553.8.32488192274
-//                                    WEID class base OID: 1.3.6.1.4.1.37553.8
-//           "Class D" Domain WEID:   weid:example.com:TEST-? is equal to weid:9-DNS-COM-EXAMPLE-TEST-?
-//                                    Since the check digit is based on the OID, the check digit is equal for both notations.
-//                                    oid:1.3.6.1.4.1.37553.8.9.17704.32488192274.16438.1372205
-//                                    WEID class base OID: 1.3.6.1.4.1.37553.8.9.17704
+//           OID WEID:                weid:O-2-RR-?
+//                                    oid:2.999
+//           PEN-OID WEID:            weid:P-SX0-7PR-?
+//                                    oid:1.3.6.1.4.1.37476.9999
+//           UUID WEID:               weid:U-3D576PEXUZ1EVVF3MKRKOTYB-7PR-?
+//                                    oid:2.25.2098739235139107623796528785225371043.9999
+//           DNS WEID:                weid:D-COM-EXAMPLE-7PR-?
+//                                    oid:1.3.6.1.4.1.37553.8.13.16438.32488192274.9999
 //     - The last arc in a WEID is the check digit. A question mark is the wildcard for an unknown check digit.
 //       In this case, the converter will return the correct expected check digit for the input.
-//     - The namespace (weid:, weid:pen:, weid:root:) is case insensitive.
-//     - Padding with '0' characters is valid (e.g. weid:000EXAMPLE-3)
-//       The paddings do not count into the WeLuhn check digit.
-//     - URN Notation "urn:x-weid:..." is equal to "weid:..."
+//     - The namespace (urn:x-weid:) is case insensitive. The URN Notation "urn:x-weid:..." is equal to "weid:...".
+//     - Padding with '0' characters is valid (e.g. weid:000EXAMPLE-3) but not recommended. The paddings do not count into the WeLuhn check digit.
 //
 
 namespace ViaThinkSoft\OIDplus\Plugins\ObjectTypes\OID;
@@ -228,6 +220,13 @@ class WeidOidConverter {
 		unset($arc);
 		$oid = implode('.', $elements);
 
+		// (Spec Change 16) urn:x-weid:O-? is usually mapped to 1.3.6.1.4.1.37553.8.24, however, there will be a redirection to the OID tree root.
+		$oid = preg_replace('@^1\.3\.6\.1\.4\.1\.37553\.8\.24(\.|$)@ismU', '', $oid);
+		// (Spec Change 16) urn:x-weid:P-? is usually mapped to 1.3.6.1.4.1.37553.8.25, however, there will be a redirection to OID 1.3.6.1.4.1.
+		$oid = preg_replace('@^1\.3\.6\.1\.4\.1\.37553\.8\.25(\.|$)@ismU', '1.3.6.1.4.1$1', $oid);
+		// (Spec Change 16) urn:x-weid:U-9-? is usually mapped to 1.3.6.1.4.1.37553.8.30, however, there will be a redirection to OID 2.25.
+		$oid = preg_replace('@^1\.3\.6\.1\.4\.1\.37553\.8\.30(\.|$)@ismU', '2.25$1', $oid);
+
 		$weid = strtolower($namespace) . strtoupper($weid); // add namespace again
 
 		$oid = self::oidSanitize($oid);
@@ -263,15 +262,26 @@ class WeidOidConverter {
 		$is_class_b_uuid = ((strpos($weidstr, '2-P-') === 0) || ($weidstr === '2-P'));
 		$is_class_a = !$is_class_b_pen && !$is_class_b_uuid && !$is_class_c;
 
+		// Deprecated as of Spec Change 16:
+		/*
 		$checksum = self::weLuhnGetCheckDigit($weidstr);
+		*/
 
 		if ($is_class_c) {
 			$weidstr = substr($weidstr, strlen('1-3-6-1-4-1-SZ5-8-'));
 			$namespace = 'weid:';
 		} else if ($is_class_b_pen) {
+			// Deprecated as of Spec Change 16:
+			/*
 			$weidstr = substr($weidstr, strlen('1-3-6-1-4-1-'));
 			$namespace = 'weid:pen:';
+			*/
+			// Recommended as of Spec Change 16:
+			$weidstr = 'P' . substr($weidstr, strlen('1-3-6-1-4-1'));
+			$namespace = 'weid:';
 		} else if ($is_class_b_uuid) {
+			// Deprecated as of Spec Change 16:
+			/*
 			if ($weidstr == '2-P') {
 				// Spec Change 14: Special case: OID 2.25 is weid:uuid:?
 				$weidstr = '';
@@ -282,13 +292,26 @@ class WeidOidConverter {
 				$weidstr = substr($weidstr, strlen('2-P-') + strlen($uuid_base36) + strlen('-'));
 				$namespace = 'weid:uuid:' . self::formatAsUUID(self::base_convert_bigint($uuid_base36, 36, 16)) . ':';
 			}
+			*/
+			// Recommended as of Spec Change 16:
+			$weidstr = 'U' . substr($weidstr, strlen('2-U'));
+			$namespace = 'weid:';
 		} else if ($is_class_a) {
-			// $weidstr stays
+			// Deprecated as of Spec Change 16:
+			/*
+			$weidstr = $weidstr;
 			$namespace = 'weid:root:';
+			*/
+			// Recommended as of Spec Change 16:
+			$weidstr = $weidstr == '' ? 'O' : 'O-' . $weidstr;
+			$namespace = 'weid:';
 		} else {
 			// should not happen
 			return false;
 		}
+
+		// Recommended as of Spec Change 16:
+		$checksum = self::weLuhnGetCheckDigit('1-3-6-1-4-1-SZ5-8-' . $weidstr);
 
 		return $namespace . ($weidstr == '' ? $checksum : $weidstr . '-' . $checksum);
 	}
