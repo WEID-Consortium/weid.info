@@ -79,7 +79,7 @@ var WeidOidConverter = {
 	oidSanitize: function(oid) {
 		var oid = oid.trim();
 
-		oid = oid.replace(/^urn:oid:/, '');
+		oid = oid.replace(/^urn:oid:/i, '');
 
 		if (oid.substr(0,1) == '.') oid = oid.substr(1); // remove leading dot
 
@@ -120,7 +120,7 @@ var WeidOidConverter = {
 	weid2oid: function(weid) {
 		var weid = weid.trim();
 
-		weid = weid.replace(/^urn:x-weid:/, 'weid:'); // Spec Change 12 (URN)
+		weid = weid.replace(/^urn:x-weid:/i, 'weid:'); // Spec Change 12 (URN)
 
 		var p = weid.lastIndexOf(':');
 		var namespace = weid.substr(0, p+1);
@@ -140,7 +140,7 @@ var WeidOidConverter = {
 			if (!tmp) return false;
 			var checksum = tmp["weid"].split("-").reverse()[0];
 			var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
-			return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : tmp["oid"] };
+			return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : tmp["oid"] };
 		} else if (namespace.startsWith("weid:uuid:")) {
 			// Spec Change 13: Class B UUID WEID ( https://github.com/WEID-Consortium/weid.info/issues/1 )
 			if (weid.split(":").length != 4) return false;
@@ -153,7 +153,7 @@ var WeidOidConverter = {
 			if (!tmp) return false;
 			var checksum = tmp["weid"].split("-").reverse()[0];
 			var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
-			return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : tmp["oid"] };
+			return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : tmp["oid"] };
 		}
 
 		if (namespace.startsWith("weid:")) {
@@ -168,13 +168,13 @@ var WeidOidConverter = {
 				if (!tmp) return false;
 				var checksum = tmp["weid"].split("-").reverse()[0];
 				var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
-				return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : tmp["oid"] };
+				return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : tmp["oid"] };
 			}
 		}
 
 		if (namespace.startsWith('weid:x-')) {
 			// Spec Change 11: Proprietary Namespaces ( https://github.com/frdl/weid/issues/4 )
-			return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : "[Proprietary WEID Namespace]" };
+			return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : "[Proprietary WEID Namespace]" };
 		} else if (namespace == 'weid:') {
 			// Class C
 			base = '1-3-6-1-4-1-SZ5-8';
@@ -192,7 +192,7 @@ var WeidOidConverter = {
 			if (!tmp) return false;
 			var checksum = tmp["weid"].split("-").reverse()[0];
 			var weid = weid.substr(0,weid.length-1) + checksum; // fix wildcard checksum if required
-			return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : tmp["oid"] };
+			return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : tmp["oid"] };
 		} else if (namespace == 'weid:root:') {
 			// Class A
 			base = '';
@@ -241,7 +241,7 @@ var WeidOidConverter = {
 		oid = WeidOidConverter.oidSanitize(oid);
 		if (oid === false) return false; // invalid OID
 
-		return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid" : oid };
+		return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid" : oid };
 	},
 
 	// Converts an OID to WEID
@@ -321,7 +321,7 @@ var WeidOidConverter = {
 
 		var weid = namespace + (weidstr == '' ? checksum : weidstr + '-' + checksum);
 
-		return { "weid": weid.replace(/^weid:/, 'urn:x-weid:'), "oid": oid };
+		return { "weid": weid.replace(/^weid:/i, 'urn:x-weid:'), "oid": oid };
 	},
 
 	formatAsUUID: function(input) {
