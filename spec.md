@@ -26,7 +26,7 @@ Identification of this Document
               { iso(1) identified-organization(3) dod(6) internet(1)
                 private(4) enterprise(1) frdlweb(37553) weid(8) org(1)
                 webfan(8) technical-specifications(1) weid-spec(6) }
-   WEID:      weid:1-8-1-6-2
+   WEID:      1-8-1-6-2
    IETF/RFC:  (None)
 
 Attachments
@@ -420,5 +420,6 @@ The detailed descriptions of the changes of Spec Change 1 through 7 are not avai
 
 *   Removal of check-digit, as it is often confused with an arc, and is seldom calculated and usually written as wildcard `-?`.
 *   Replacing `urn:x-weid` (WEhowski IDentifier) with `urn:x-mwid` (Marschall Wehowski IDentifier) due to the incompatibility that would arise by removing the check-digit.
+*   If NSS prefixes are NOT used and the application context explicitly describes an identifier as WEID, the NSS `urn:x-weid:` can be omitted. For example, if a GUI field has the label "WEID", then `urn:x-weid:` can be ommitted, but NSS prefixes (such as `urn:x-weid:pen:`) must be forbidden.
 
 © WEID is developed by [Daniel Marschall](https://www.daniel-marschall.de/) / [ViaThinkSoft](https://www.viathinksoft.com/) and [Melanie Wehowski](https://webfan.de/u/frdl-github-2658030).
