@@ -311,21 +311,6 @@ ASN1: `{ ... uuid-oid(30) }`
 
 \[RFC4122\] Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122), DOI 10.17487/RFC4122, July 2005, <[https://www.rfc-editor.org/info/rfc4122](https://www.rfc-editor.org/info/rfc4122)\>.
 
-### 10. Acknowledgements
-
-I would like to thank Melanie Wehowski for her long-time support in OIDplus and WEID projects. Thanks to the authors of these free tools that did a good job in validating various contents of this document:
-
-This document was written in Nroff Internet Draft Editor by 3xA Security. [https://aaa-sec.com/nroffedit/](https://aaa-sec.com/nroffedit/) [https://misc.daniel-marschall.de/patches/nroffedit/](https://misc.daniel-marschall.de/patches/nroffedit/) ("year 2020" patch)
-
-### 11. Authors' Addresses
-
-Daniel Marschall<br>
-Postfach 11 53<br>
-69243 Bammental<br>
-Germany
-
-Email: [daniel-marschall@viathinksoft.de](mailto:daniel-marschall@viathinksoft.de)<br>
-URI: [https://www.viathinksoft.com/](https://www.viathinksoft.com/)
 -->
 
 ### Appendix A: Specification Change Changelog
