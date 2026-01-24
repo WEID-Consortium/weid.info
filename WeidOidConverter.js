@@ -4,7 +4,7 @@
 /**
 * WEID<=>OID Converter
 * (c) Webfan.de, ViaThinkSoft
-* Revision 2025-12-28
+* Revision 2026-01-24
 **/
 
 // What is a WEID?
@@ -38,6 +38,8 @@
 var WeidOidConverter = {
 
 	weLuhnCheckDigit: function(str) {
+		str = str.replace(/-+$/, '');
+
 		// Padding zeros don't count to the check digit (December 2021)
 		var ary = str.split('-');
 		ary.forEach(function (o,i,a) {
